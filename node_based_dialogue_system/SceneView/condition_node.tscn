@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://orj2kdud7oyu"]
+
+[ext_resource type="Script" uid="uid://d3s4f5ev52iwx" path="res://addons/node_based_dialogue_system/SceneView/condition_node.gd" id="1_30nq8"]
+
+[node name="ConditionNode" type="GraphNode" unique_id=1546763319 groups=["condition_nodes"]]
+custom_minimum_size = Vector2(300, 100)
+anchors_preset = -1
+anchor_right = 0.156
+anchor_bottom = 0.14400001
+offset_right = 0.47998047
+offset_bottom = -0.5200043
+title = "Condition Node"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(2.117753e-06, 0.5182361, 0.0717297, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color(0.6509804, 0.011764706, 0, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_30nq8")
+
+[node name="SlotSlut" type="Label" parent="." unique_id=1400418622]
+layout_mode = 2
+
+[node name="ConditionEdit" type="TextEdit" parent="." unique_id=1593335702]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+editable = false

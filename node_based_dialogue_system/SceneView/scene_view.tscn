@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://cqd254bkr4ms3"]
+
+[ext_resource type="Script" uid="uid://bh7a3fnsbcvah" path="res://addons/node_based_dialogue_system/SceneView/scene_view.gd" id="1_1ias0"]
+
+[node name="SceneView" type="Control" unique_id=1941459494]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1ias0")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=529403632]
+custom_minimum_size = Vector2(1920, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.093
+offset_right = -1880.0
+offset_bottom = -60.440002
+color = Color(0, 0.5882353, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect" unique_id=1658215852]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NewDialogueNodeButton" type="Button" parent="ColorRect/HBoxContainer" unique_id=57243978]
+layout_mode = 2
+text = "New Dialogue Node"
+
+[node name="NewHubNodeButton" type="Button" parent="ColorRect/HBoxContainer" unique_id=569916925]
+layout_mode = 2
+text = "New Hub Node"
+
+[node name="NewJumpNodeButton" type="Button" parent="ColorRect/HBoxContainer" unique_id=1768034056]
+layout_mode = 2
+text = "New Jump Node"
+
+[node name="NewConditionNodeButton" type="Button" parent="ColorRect/HBoxContainer" unique_id=1473164146]
+layout_mode = 2
+text = "New Condition Node"
+
+[node name="VSeparator" type="VSeparator" parent="ColorRect/HBoxContainer" unique_id=542520327]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="ReturnToSceneViewButton" type="Button" parent="ColorRect/HBoxContainer" unique_id=1227927740]
+layout_mode = 2
+text = "Save & Close"
+
+[node name="ExportSceneButton" type="Button" parent="ColorRect/HBoxContainer" unique_id=178775727]
+layout_mode = 2
+text = "Export Scene"
+
+[node name="ExportScene" type="FileDialog" parent="ColorRect/HBoxContainer/ExportSceneButton" unique_id=1273570416]
+oversampling_override = 1.0
+filters = PackedStringArray("*.json")
+
+[node name="VSeparator2" type="VSeparator" parent="ColorRect/HBoxContainer" unique_id=151678772]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="ArangeNodesButton" type="Button" parent="ColorRect/HBoxContainer" unique_id=398621427]
+layout_mode = 2
+text = "Reorder Nodes"
+
+[node name="DeleteSelectedNodeButton" type="Button" parent="ColorRect/HBoxContainer" unique_id=1366489072]
+layout_mode = 2
+text = "Delete Selected Nodes"
+
+[node name="GraphEdit" type="GraphEdit" parent="." unique_id=1183870194]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.001
+anchor_top = 0.093
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.9200001
+offset_top = -0.44000244
+right_disconnects = true
+minimap_enabled = false
+show_menu = false
+
+[connection signal="pressed" from="ColorRect/HBoxContainer/NewDialogueNodeButton" to="." method="_on_new_node_button_pressed"]
+[connection signal="pressed" from="ColorRect/HBoxContainer/NewHubNodeButton" to="." method="_on_new_hub_node_button_pressed"]
+[connection signal="pressed" from="ColorRect/HBoxContainer/NewJumpNodeButton" to="." method="_on_new_jump_node_button_pressed"]
+[connection signal="pressed" from="ColorRect/HBoxContainer/NewConditionNodeButton" to="." method="_on_new_condition_node_button_pressed"]
+[connection signal="pressed" from="ColorRect/HBoxContainer/ReturnToSceneViewButton" to="." method="_on_return_to_scene_view_button_pressed"]
+[connection signal="pressed" from="ColorRect/HBoxContainer/ExportSceneButton" to="." method="_on_export_scene_button_pressed"]
+[connection signal="file_selected" from="ColorRect/HBoxContainer/ExportSceneButton/ExportScene" to="." method="_on_export_scene_file_selected"]
+[connection signal="pressed" from="ColorRect/HBoxContainer/ArangeNodesButton" to="." method="_on_arange_nodes_button_pressed"]
+[connection signal="pressed" from="ColorRect/HBoxContainer/DeleteSelectedNodeButton" to="." method="_on_delete_selected_node_button_pressed"]
+[connection signal="connection_request" from="GraphEdit" to="." method="_on_graph_edit_connection_request"]
+[connection signal="delete_nodes_request" from="GraphEdit" to="." method="_on_graph_edit_delete_nodes_request"]
+[connection signal="disconnection_request" from="GraphEdit" to="." method="_on_graph_edit_disconnection_request"]

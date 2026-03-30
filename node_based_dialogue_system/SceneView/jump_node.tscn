@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://d38we5cv5ek3r"]
+
+[ext_resource type="Script" uid="uid://2qc6fsp0k2vy" path="res://addons/node_based_dialogue_system/SceneView/jump_node.gd" id="1_7imjx"]
+[ext_resource type="Texture2D" uid="uid://dg5xwuumgbuwa" path="res://icon.svg" id="2_qwj2r"]
+
+[node name="JumpNode" type="GraphNode" unique_id=1644445554 groups=["jump_nodes"]]
+custom_minimum_size = Vector2(250, 200)
+anchors_preset = -1
+anchor_right = 0.13000001
+anchor_bottom = 0.185
+offset_right = -249.60002
+offset_bottom = -199.8
+title = "Jump Node"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_7imjx")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=428528380]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_qwj2r")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=441676810]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=242975296]
+layout_mode = 2
+text = "Jump to: "
+
+[node name="TargetHub" type="Label" parent="HBoxContainer" unique_id=2072545860]
+layout_mode = 2
+text = "SomeHub"

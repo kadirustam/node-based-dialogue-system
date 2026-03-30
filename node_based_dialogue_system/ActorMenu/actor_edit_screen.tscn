@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://d4agmvl3cnnkw"]
+
+[ext_resource type="Script" uid="uid://3rgr6r74e5cu" path="res://addons/node_based_dialogue_system/ActorMenu/actor_edit_screen.gd" id="1_jmiih"]
+
+[node name="ActorEditScreen" type="Control" unique_id=1639260444]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jmiih")
+
+[node name="Window" type="Window" parent="." unique_id=594856180]
+oversampling_override = 1.0
+title = "Edit Actor Screen"
+initial_position = 2
+size = Vector2i(800, 600)
+unresizable = true
+
+[node name="Panel" type="Panel" parent="Window" unique_id=990828490]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PictureLabel" type="Label" parent="Window/Panel" unique_id=555795895]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 55.0
+offset_bottom = 23.0
+text = "Picture:"
+
+[node name="PictureTexture" type="TextureRect" parent="Window/Panel/PictureLabel" unique_id=415722077]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 225.0
+offset_bottom = 237.0
+expand_mode = 1
+
+[node name="PictureAddButton" type="Button" parent="Window/Panel/PictureLabel" unique_id=1020066229]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 3.7500002
+anchor_top = 5.2170005
+anchor_right = 3.7500002
+anchor_bottom = 5.2170005
+offset_left = -3.0517578e-05
+offset_top = 0.008987427
+offset_right = 97.999985
+offset_bottom = 31.008987
+text = "Add Picture"
+
+[node name="FileDialog" type="FileDialog" parent="Window/Panel/PictureLabel" unique_id=197950279]
+oversampling_override = 1.0
+title = "Open a File"
+file_mode = 0
+display_mode = 1
+access = 2
+use_native_dialog = true
+
+[node name="NameLabel" type="Label" parent="Window/Panel" unique_id=494576808]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.47700003
+anchor_bottom = 0.47700003
+offset_top = -0.2000122
+offset_right = 47.0
+offset_bottom = 22.799988
+text = "Name:"
+
+[node name="NameEdit" type="TextEdit" parent="Window/Panel/NameLabel" unique_id=358575363]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+offset_right = 200.0
+offset_bottom = 33.0
+tab_input_mode = false
+
+[node name="IdLabel" type="Label" parent="Window/Panel" unique_id=1256247687]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.647
+anchor_bottom = 0.647
+offset_top = -0.2000122
+offset_right = 47.0
+offset_bottom = 22.799988
+text = "ID:"
+
+[node name="IdEdit" type="TextEdit" parent="Window/Panel/IdLabel" unique_id=2629457]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.13
+anchor_bottom = 1.13
+offset_top = 0.010000229
+offset_right = 200.0
+offset_bottom = 30.01
+editable = false
+tab_input_mode = false
+
+[node name="GenerateIdButton" type="Button" parent="Window/Panel/IdLabel" unique_id=988981959]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 6.7230005
+anchor_top = 1.0
+anchor_right = 6.7230005
+anchor_bottom = 1.0
+offset_left = 0.018981934
+offset_right = 101.01898
+offset_bottom = 31.0
+text = "Generate ID"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/Panel" unique_id=960662999]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.404
+anchor_top = 0.883
+anchor_right = 0.404
+anchor_bottom = 0.883
+offset_left = -0.2000122
+offset_top = 0.2000122
+offset_right = 148.79999
+offset_bottom = 40.200012
+
+[node name="AddButton" type="Button" parent="Window/Panel/HBoxContainer" unique_id=1558895157]
+layout_mode = 2
+text = "Add Actor"
+
+[node name="Cancel" type="Button" parent="Window/Panel/HBoxContainer" unique_id=1789655884]
+layout_mode = 2
+text = "Cancel
+"
+
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
+[connection signal="pressed" from="Window/Panel/PictureLabel/PictureAddButton" to="." method="_on_picture_add_button_pressed"]
+[connection signal="file_selected" from="Window/Panel/PictureLabel/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="Window/Panel/IdLabel/GenerateIdButton" to="." method="_on_generate_id_button_pressed"]
+[connection signal="pressed" from="Window/Panel/HBoxContainer/AddButton" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="Window/Panel/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]

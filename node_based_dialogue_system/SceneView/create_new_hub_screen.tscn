@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://n1c2r1bmo687"]
+
+[ext_resource type="Script" uid="uid://5hbw8hdpc5b5" path="res://addons/node_based_dialogue_system/SceneView/create_new_hub_screen.gd" id="1_u88ju"]
+
+[node name="CreateNewHubScreen" type="Control" unique_id=1114454999]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_u88ju")
+
+[node name="Window" type="Window" parent="." unique_id=1895584950]
+oversampling_override = 1.0
+title = "Create New Hub"
+initial_position = 2
+size = Vector2i(480, 320)
+unresizable = true
+
+[node name="Panel" type="Panel" parent="Window" unique_id=822973614]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HubNameLabel" type="Label" parent="Window/Panel" unique_id=1359880482]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.002
+anchor_right = 0.002
+offset_left = 0.040029526
+offset_right = 88.04003
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hub Name:"
+
+[node name="HubNameEdit" type="TextEdit" parent="Window/Panel/HubNameLabel" unique_id=198251578]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 0.4999771
+offset_right = 150.49997
+offset_bottom = 30.0
+
+[node name="HubIdLabel" type="Label" parent="Window/Panel" unique_id=1581921113]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.32900003
+anchor_bottom = 0.32900003
+offset_top = 0.039993286
+offset_right = 83.0
+offset_bottom = 23.039993
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hub ID:"
+
+[node name="HubIdEdit" type="TextEdit" parent="Window/Panel/HubIdLabel" unique_id=603247272]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 150.0
+offset_bottom = 30.0
+editable = false
+
+[node name="HubIdGenerateButton" type="Button" parent="Window/Panel/HubIdLabel" unique_id=972865043]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.5660002
+anchor_top = 1.0
+anchor_right = 2.5660002
+anchor_bottom = 1.0
+offset_left = 0.021987915
+offset_right = 101.02199
+offset_bottom = 31.0
+text = "Generate ID"
+
+[node name="CreateHubNodeButton" type="Button" parent="Window/Panel" unique_id=930612095]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.44400004
+anchor_top = 0.76100004
+anchor_right = 0.44400004
+anchor_bottom = 0.76100004
+offset_left = -0.08001709
+offset_top = 0.019989014
+offset_right = 59.919983
+offset_bottom = 31.019989
+text = "Create"
+
+[connection signal="close_requested" from="Window" to="." method="_on_close_requested"]
+[connection signal="pressed" from="Window/Panel/HubIdLabel/HubIdGenerateButton" to="." method="_on_hub_id_generate_button_pressed"]
+[connection signal="pressed" from="Window/Panel/CreateHubNodeButton" to="." method="_on_create_hub_node_button_pressed"]

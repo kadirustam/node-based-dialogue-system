@@ -1,0 +1,125 @@
+{
+	"DialogueNode:<GraphNode#2068161047636>": {
+		"actor_name": "SomeGuy",
+		"connections": [
+			{
+				"from_node": "3p60654",
+				"from_port": 0,
+				"to_node": "7j49324",
+				"to_port": 0
+			}
+		],
+		"dialogue_text": "\"I can say some things!\"",
+		"node_id": "3p60654",
+		"texture": "res://.godot/imported/testguy.svg-41071c9a71c371e0bf342f9db98153a0.ctex",
+		"type": "dialogue"
+	},
+	"@GraphNode@21688:<GraphNode#2068815359031>": {
+		"actor_name": "OtherGuy",
+		"connections": [
+			{
+				"from_node": "2r64263",
+				"from_port": 0,
+				"to_node": "6r99922",
+				"to_port": 0
+			}
+		],
+		"dialogue_text": "\"With the Hub Node, I can say multiple things!\"",
+		"node_id": "2r64263",
+		"texture": "res://.godot/imported/testguy2.svg-4fd29c81343e2c78898310205f30a6eb.ctex",
+		"type": "dialogue"
+	},
+	"@GraphNode@21701:<GraphNode#2069469670533>": {
+		"actor_name": "OtherGuy",
+		"connections": [
+			{
+				"from_node": "9o48633",
+				"from_port": 0,
+				"to_node": "4o72378",
+				"to_port": 0
+			}
+		],
+		"dialogue_text": "\"That makes me the Main Character cause it means i can choose what to say!\"",
+		"node_id": "9o48633",
+		"texture": "res://.godot/imported/testguy2.svg-4fd29c81343e2c78898310205f30a6eb.ctex",
+		"type": "dialogue"
+	},
+	"@GraphNode@21714:<GraphNode#2070123981996>": {
+		"actor_name": "OtherGuy",
+		"connections": [
+			{
+				"from_node": "4o72378",
+				"from_port": 0,
+				"to_node": "8s42785",
+				"to_port": 0
+			}
+		],
+		"dialogue_text": "\"I can even return to the Hub Node from before with a Jump Node.\"",
+		"node_id": "4o72378",
+		"texture": "res://.godot/imported/testguy2.svg-4fd29c81343e2c78898310205f30a6eb.ctex",
+		"type": "dialogue"
+	},
+	"@GraphNode@21727:<GraphNode#2070778293458>": {
+		"actor_name": "OtherGuy",
+		"connections": [],
+		"dialogue_text": "\"I can even check if some Condition is true so it triggers this Dialogue Path!\"",
+		"node_id": "3r72054",
+		"texture": "res://.godot/imported/testguy2.svg-4fd29c81343e2c78898310205f30a6eb.ctex",
+		"type": "dialogue"
+	},
+	"@GraphNode@21740:<GraphNode#2071432604920>": {
+		"actor_name": "Dangerous Animal",
+		"connections": [],
+		"dialogue_text": "\"You failed the Check, I am gonna eat you now.\"",
+		"node_id": "0p92706",
+		"texture": "res://.godot/imported/testbirb.svg-6ba071e7691c591fab411c882805e787.ctex",
+		"type": "dialogue"
+	},
+	"HubNode:<GraphNode#2072086916382>": {
+		"connections": [
+			{
+				"from_node": "7j49324",
+				"from_port": 0,
+				"to_node": "2r64263",
+				"to_port": 0
+			},
+			{
+				"from_node": "7j49324",
+				"from_port": 0,
+				"to_node": "9o48633",
+				"to_port": 0
+			}
+		],
+		"hub_id": "7j49324",
+		"hub_name": "Unnamed Hub",
+		"node_id": "7j49324",
+		"type": "hub"
+	},
+	"JumpNode:<GraphNode#2072254688552>": {
+		"connections": [],
+		"node_id": "8s42785",
+		"target_id": "7j49324",
+		"target_name": "Unnamed Hub",
+		"type": "jump"
+	},
+	"ConditionNode:<GraphNode#2072489569590>": {
+		"condition_id": "7e16735",
+		"condition_name": "isThisConditionTrue()",
+		"connections": [
+			{
+				"from_node": "6r99922",
+				"from_port": 0,
+				"to_node": "3r72054",
+				"to_port": 0
+			},
+			{
+				"from_node": "6r99922",
+				"from_port": 1,
+				"to_node": "0p92706",
+				"to_port": 0
+			}
+		],
+		"node_id": "6r99922",
+		"type": "condition"
+	}
+}

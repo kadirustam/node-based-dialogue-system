@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dr7gqw1afgoty"]
+
+[ext_resource type="Script" uid="uid://cv0cxhnfd6ap6" path="res://addons/node_based_dialogue_system/ActorMenu/actor_edit_item.gd" id="1_n8nii"]
+
+[node name="Panel" type="Panel" unique_id=1484409596]
+custom_minimum_size = Vector2(300, 50)
+offset_right = 140.0
+offset_bottom = 40.0
+script = ExtResource("1_n8nii")
+
+[node name="Label" type="Label" parent="." unique_id=977078168]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -11.5
+offset_right = 50.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+text = "SomeItem"
+horizontal_alignment = 1
+
+[node name="ActorTexture" type="TextureRect" parent="." unique_id=1462216575]
+layout_mode = 1
+offset_right = 50.0
+offset_bottom = 50.0
+expand_mode = 1
+
+[node name="SelectMarker" type="ColorRect" parent="." unique_id=308638484]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9764706, 0.5529412, 0, 0.19215687)
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="Label" to="." method="_on_gui_input"]
+[connection signal="gui_input" from="ActorTexture" to="." method="_on_gui_input"]

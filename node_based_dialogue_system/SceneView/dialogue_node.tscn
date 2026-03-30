@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://biy8y2bgwl2oa"]
+
+[ext_resource type="Script" uid="uid://muquc34nssm7" path="res://addons/node_based_dialogue_system/SceneView/dialogue_node.gd" id="1_af0ot"]
+
+[node name="DialogueNode" type="GraphNode" unique_id=22876433 groups=["dialogue_nodes"]]
+offset_right = 500.0
+offset_bottom = 300.0
+title = "Dialogue Node"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+script = ExtResource("1_af0ot")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=461411181]
+layout_mode = 2
+
+[node name="Picture" type="TextureRect" parent="HBoxContainer" unique_id=863260928]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=558207169]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=947312008]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Actor Name:"
+
+[node name="NameEdit" type="TextEdit" parent="HBoxContainer/VBoxContainer" unique_id=1371973378]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+text = "Simple Node"
+editable = false
+
+[node name="DialogueLabel" type="Label" parent="." unique_id=291696927]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Dialogue Text:"
+
+[node name="DialogueEdit" type="TextEdit" parent="." unique_id=1851246686]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+wrap_mode = 1

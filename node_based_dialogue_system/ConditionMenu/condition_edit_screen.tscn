@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://7a6xxwvbyrrl"]
+
+[ext_resource type="Script" uid="uid://diaiqr081ebf7" path="res://addons/node_based_dialogue_system/ConditionMenu/condition_edit_screen.gd" id="1_ul8th"]
+
+[node name="ConditionEditScreen" type="Control" unique_id=96352020]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ul8th")
+
+[node name="Window" type="Window" parent="." unique_id=34290062]
+oversampling_override = 1.0
+title = "Create New Condition"
+initial_position = 2
+size = Vector2i(640, 480)
+unresizable = true
+
+[node name="Panel" type="Panel" parent="Window" unique_id=1808319472]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConditionNameLabel" type="Label" parent="Window/Panel" unique_id=1452416648]
+layout_mode = 1
+offset_right = 131.0
+offset_bottom = 23.0
+text = "Condition Name:"
+
+[node name="ConditionNameEdit" type="TextEdit" parent="Window/Panel/ConditionNameLabel" unique_id=2018961711]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 300.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_input_mode = false
+
+[node name="ConditionIdLabel" type="Label" parent="Window/Panel" unique_id=1504691716]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.296
+anchor_bottom = 0.296
+offset_top = -0.08000183
+offset_right = 101.0
+offset_bottom = 22.919998
+text = "Condition ID:"
+
+[node name="ConditionIdEdit" type="TextEdit" parent="Window/Panel/ConditionIdLabel" unique_id=1471893185]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 300.0
+offset_bottom = 50.0
+editable = false
+tab_input_mode = false
+
+[node name="GenerateIdButton" type="Button" parent="Window/Panel/ConditionIdLabel" unique_id=291420872]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.97
+anchor_top = 1.174
+anchor_right = 2.97
+anchor_bottom = 1.174
+offset_left = 0.02999878
+offset_top = -0.0020008087
+offset_right = 80.03
+offset_bottom = 30.998
+text = "Generate"
+
+[node name="CreateButton" type="Button" parent="Window" unique_id=369003395]
+anchors_preset = -1
+anchor_left = 0.35900003
+anchor_top = 0.89300007
+anchor_right = 0.35900003
+anchor_bottom = 0.89300007
+offset_left = -29.76001
+offset_top = -15.640045
+offset_right = 30.23999
+offset_bottom = 15.359955
+grow_horizontal = 2
+grow_vertical = 0
+text = "Create"
+
+[node name="CancelButton" type="Button" parent="Window" unique_id=386391638]
+custom_minimum_size = Vector2(0, 30)
+anchors_preset = -1
+anchor_left = 0.65300006
+anchor_top = 0.89300007
+anchor_right = 0.65300006
+anchor_bottom = 0.89300007
+offset_left = -29.920044
+offset_top = -15.640045
+offset_right = 30.079956
+offset_bottom = 15.359955
+grow_horizontal = 2
+grow_vertical = 0
+text = "Cancel"
+
+[node name="EmptyNameDialog" type="AcceptDialog" parent="." unique_id=1591318787]
+oversampling_override = 1.0
+title = "Empty Name"
+initial_position = 2
+size = Vector2i(304, 144)
+dialog_text = "Please put in a valid Condition Name!
+Example: isYourMomSingle()"
+
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
+[connection signal="pressed" from="Window/Panel/ConditionIdLabel/GenerateIdButton" to="." method="_on_generate_id_button_pressed"]
+[connection signal="pressed" from="Window/CreateButton" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="Window/CancelButton" to="." method="_on_cancel_button_pressed"]

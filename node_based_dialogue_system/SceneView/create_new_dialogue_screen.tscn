@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bn4x3x4putbil"]
+
+[ext_resource type="Script" uid="uid://ddjpw40f4n64v" path="res://addons/node_based_dialogue_system/SceneView/create_new_dialogue_screen.gd" id="1_axy6k"]
+
+[node name="CreateNewDialogueNodeScreen" type="Control" unique_id=1187790364]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_axy6k")
+
+[node name="Window" type="Window" parent="." unique_id=1971743632]
+oversampling_override = 1.0
+title = "Choose Actor"
+initial_position = 2
+size = Vector2i(640, 480)
+unresizable = true
+
+[node name="Panel" type="Panel" parent="Window" unique_id=1154484958]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChooseActorLabel" type="Label" parent="Window/Panel" unique_id=1335838915]
+layout_mode = 0
+offset_right = 376.0
+offset_bottom = 34.0
+text = "Choose Actor for Dialogue Node:"
+
+[node name="ActorList" type="VBoxContainer" parent="Window/Panel/ChooseActorLabel" unique_id=910741545]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.4710001
+anchor_right = 1.6980001
+anchor_bottom = 14.118001
+offset_top = -0.014003754
+offset_right = -0.14605713
+offset_bottom = -0.012023926
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
+[connection signal="gui_input" from="Window/Panel/ChooseActorLabel/ActorList/ActorSceneItem" to="Window/Panel/ChooseActorLabel/ActorList/ActorSceneItem" method="_on_gui_input"]
+[connection signal="gui_input" from="Window/Panel/ChooseActorLabel/ActorList/@Panel@27233" to="Window/Panel/ChooseActorLabel/ActorList/@Panel@27233" method="_on_gui_input"]
+[connection signal="gui_input" from="Window/Panel/ChooseActorLabel/ActorList/@Panel@27234" to="Window/Panel/ChooseActorLabel/ActorList/@Panel@27234" method="_on_gui_input"]

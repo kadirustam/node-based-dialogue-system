@@ -1,0 +1,17 @@
+{
+	"Panel:<Panel#2359077973554>": {
+		"actor_id": "4n22871",
+		"actor_name": "SomeGuy",
+		"actor_texture": "res://.godot/imported/testguy.svg-41071c9a71c371e0bf342f9db98153a0.ctex"
+	},
+	"@Panel@21601:<Panel#2412882505268>": {
+		"actor_id": "1n44082",
+		"actor_name": "OtherGuy",
+		"actor_texture": "res://.godot/imported/testguy2.svg-4fd29c81343e2c78898310205f30a6eb.ctex"
+	},
+	"Panel:<Panel#2474958204486>": {
+		"actor_id": "2n84839",
+		"actor_name": "Dangerous Animal",
+		"actor_texture": "res://.godot/imported/testbirb.svg-6ba071e7691c591fab411c882805e787.ctex"
+	}
+}

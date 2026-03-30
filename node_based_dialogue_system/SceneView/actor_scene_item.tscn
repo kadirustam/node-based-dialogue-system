@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bx8cc36d1cimh"]
+
+[ext_resource type="Script" uid="uid://doxexxx24khjy" path="res://addons/node_based_dialogue_system/SceneView/actor_scene_item.gd" id="1_k1vib"]
+
+[node name="ActorSceneItem" type="Panel" unique_id=1711983730]
+custom_minimum_size = Vector2(300, 50)
+anchors_preset = -1
+anchor_right = 0.156
+anchor_bottom = 0.046000004
+offset_right = 0.47998047
+offset_bottom = 0.31999588
+script = ExtResource("1_k1vib")
+
+[node name="ActorTexture" type="TextureRect" parent="." unique_id=986510186]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.083000004
+anchor_top = 0.5
+anchor_right = 0.083000004
+anchor_bottom = 0.5
+offset_left = -24.900002
+offset_top = -25.0
+offset_right = 25.099998
+offset_bottom = 25.0
+expand_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=249928948]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -11.5
+offset_right = 42.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="Label" to="." method="_on_gui_input"]

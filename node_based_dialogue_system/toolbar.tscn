@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dy2gl042kj2tk"]
+
+[ext_resource type="Script" uid="uid://dlxs2hengxavj" path="res://addons/node_based_dialogue_system/toolbar.gd" id="1_pm1ml"]
+[ext_resource type="PackedScene" uid="uid://byefdxxgdyxmm" path="res://addons/node_based_dialogue_system/ActorMenu/actor_edit.tscn" id="2_2jiff"]
+[ext_resource type="PackedScene" uid="uid://f8flknew8l1u" path="res://addons/node_based_dialogue_system/ConditionMenu/condition_menu.tscn" id="2_biq2a"]
+[ext_resource type="PackedScene" uid="uid://cyk3u23x7ndhn" path="res://addons/node_based_dialogue_system/SceneMenu/scene_edit.tscn" id="4_vtyep"]
+
+[node name="Toolbar" type="Control" unique_id=319480441]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_pm1ml")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1646461869]
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_font_sizes/font_size = 32
+tab_alignment = 1
+current_tab = 0
+tab_0/title = "Actors"
+tab_1/title = "Conditions"
+tab_2/title = "Scenes"
+
+[node name="ActorEdit" parent="TabContainer" unique_id=648884945 instance=ExtResource("2_2jiff")]
+layout_mode = 2
+metadata/_tab_index = 0
+metadata/_tab_name = "Actors"
+
+[node name="ConditionMenu" parent="TabContainer" unique_id=1520242363 instance=ExtResource("2_biq2a")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+metadata/_tab_name = "Conditions"
+
+[node name="SceneEdit" parent="TabContainer" unique_id=1697549648 instance=ExtResource("4_vtyep")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+metadata/_tab_name = "Scenes"

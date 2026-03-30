@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://f8flknew8l1u"]
+
+[ext_resource type="Script" uid="uid://ctm36bohfgehn" path="res://addons/node_based_dialogue_system/ConditionMenu/condition_menu.gd" id="1_qcobf"]
+
+[node name="ConditionMenu" type="Control" unique_id=1520242363]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qcobf")
+
+[node name="Panel" type="Panel" parent="." unique_id=665141115]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel" unique_id=672397765]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0.5882353, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/ColorRect" unique_id=568260539]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NewConditionButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=141905950]
+layout_mode = 2
+text = "New Condition"
+
+[node name="RemoveConditionButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=1407213312]
+layout_mode = 2
+text = "Remove Condition"
+
+[node name="VSeparator" type="VSeparator" parent="Panel/ColorRect/HBoxContainer" unique_id=767584763]
+layout_mode = 2
+
+[node name="SaveConditionsButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=579532217]
+visible = false
+layout_mode = 2
+text = "Save Conditions"
+
+[node name="SaveDialog" type="FileDialog" parent="Panel/ColorRect/HBoxContainer/SaveConditionsButton" unique_id=930313131]
+filters = PackedStringArray("*.json")
+use_native_dialog = true
+
+[node name="LoadConditionsButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=673970094]
+visible = false
+layout_mode = 2
+text = "Load Conditions"
+
+[node name="LoadDialog" type="FileDialog" parent="Panel/ColorRect/HBoxContainer/LoadConditionsButton" unique_id=921550464]
+oversampling_override = 1.0
+title = "Open a File"
+file_mode = 0
+filters = PackedStringArray("*.json")
+use_native_dialog = true
+
+[node name="ConditionList" type="Label" parent="Panel" unique_id=981002615]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.004
+anchor_top = 0.046000004
+anchor_right = 0.004
+anchor_bottom = 0.046000004
+offset_left = 0.3199997
+offset_top = 0.31999588
+offset_right = 112.32
+offset_bottom = 23.319996
+text = "Condition List:"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ConditionList" unique_id=1151446367]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.143
+anchor_top = 1.0
+anchor_right = 0.143
+anchor_bottom = 1.0
+offset_left = -0.016000748
+offset_right = 1867.984
+offset_bottom = 981.0
+grow_vertical = 0
+
+[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/NewConditionButton" to="." method="_on_new_condition_button_pressed"]
+[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/RemoveConditionButton" to="." method="_on_remove_condition_button_pressed"]
+[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/SaveConditionsButton" to="." method="_on_save_conditions_button_pressed"]
+[connection signal="file_selected" from="Panel/ColorRect/HBoxContainer/SaveConditionsButton/SaveDialog" to="." method="_on_save_dialog_file_selected"]
+[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/LoadConditionsButton" to="." method="_on_load_conditions_button_pressed"]
+[connection signal="file_selected" from="Panel/ColorRect/HBoxContainer/LoadConditionsButton/LoadDialog" to="." method="_on_load_dialog_file_selected"]

@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://cyk3u23x7ndhn"]
+
+[ext_resource type="Script" uid="uid://bn2jhmb0s22pb" path="res://addons/node_based_dialogue_system/SceneMenu/scene_edit.gd" id="1_v87sv"]
+
+[node name="SceneEdit" type="Control" unique_id=1697549648]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v87sv")
+
+[node name="Panel" type="Panel" parent="." unique_id=1429287158]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel" unique_id=525897895]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+color = Color(0, 0.5882353, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/ColorRect" unique_id=1513399643]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NewSceneButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=1813251643]
+layout_mode = 2
+text = "New Scene"
+
+[node name="OpenSceneButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=478817537]
+layout_mode = 2
+text = "Open Scene"
+
+[node name="DeleteSceneButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=413594492]
+layout_mode = 2
+text = "Delete Scene"
+
+[node name="DeleteConfirm" type="ConfirmationDialog" parent="Panel/ColorRect/HBoxContainer/DeleteSceneButton" unique_id=242301822]
+oversampling_override = 1.0
+title = "Delete Selected Scene"
+initial_position = 2
+size = Vector2i(417, 100)
+unresizable = true
+dialog_text = "Are you sure you want to delete the selected Scene?"
+
+[node name="VSeparator" type="VSeparator" parent="Panel/ColorRect/HBoxContainer" unique_id=1401583521]
+layout_mode = 2
+
+[node name="SaveScenesButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=393412503]
+visible = false
+layout_mode = 2
+text = "Save Scenes"
+
+[node name="SaveFileDialog" type="FileDialog" parent="Panel/ColorRect/HBoxContainer/SaveScenesButton" unique_id=549899409]
+display_mode = 1
+filters = PackedStringArray("*.json")
+use_native_dialog = true
+
+[node name="LoadScenesButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=86501998]
+visible = false
+layout_mode = 2
+text = "Load Scenes"
+
+[node name="LoadFileDialog" type="FileDialog" parent="Panel/ColorRect/HBoxContainer/LoadScenesButton" unique_id=2138735572]
+title = "Open a File"
+file_mode = 0
+display_mode = 1
+filters = PackedStringArray("*.json")
+use_native_dialog = true
+
+[node name="SceneListLabel" type="Label" parent="Panel" unique_id=1712293455]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.004
+anchor_top = 0.046000004
+anchor_right = 0.004
+anchor_bottom = 0.046000004
+offset_left = 0.3199997
+offset_top = 0.31999588
+offset_right = 82.32
+offset_bottom = 23.319996
+text = "Scene List:"
+
+[node name="SceneList" type="VBoxContainer" parent="Panel/SceneListLabel" unique_id=1039698911]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.039
+anchor_top = 1.0
+anchor_right = -0.039
+anchor_bottom = 1.0
+offset_left = -0.082999706
+offset_right = 1904.198
+offset_bottom = 961.0
+grow_vertical = 0
+
+[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/NewSceneButton" to="." method="_on_new_scene_button_pressed"]
+[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/OpenSceneButton" to="." method="_on_open_scene_button_pressed"]
+[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/DeleteSceneButton" to="." method="_on_delete_scene_button_pressed"]
+[connection signal="canceled" from="Panel/ColorRect/HBoxContainer/DeleteSceneButton/DeleteConfirm" to="." method="_on_delete_confirm_canceled"]
+[connection signal="confirmed" from="Panel/ColorRect/HBoxContainer/DeleteSceneButton/DeleteConfirm" to="." method="_on_delete_confirm_confirmed"]
+[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/SaveScenesButton" to="." method="_on_save_scenes_button_pressed"]
+[connection signal="file_selected" from="Panel/ColorRect/HBoxContainer/SaveScenesButton/SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
+[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/LoadScenesButton" to="." method="_on_load_scenes_button_pressed"]
+[connection signal="file_selected" from="Panel/ColorRect/HBoxContainer/LoadScenesButton/LoadFileDialog" to="." method="_on_load_file_dialog_file_selected"]

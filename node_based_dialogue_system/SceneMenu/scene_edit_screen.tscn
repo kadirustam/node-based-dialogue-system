@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://dndukyvcj350m"]
+
+[ext_resource type="Script" uid="uid://j7cff520ihbt" path="res://addons/node_based_dialogue_system/SceneMenu/scene_edit_screen.gd" id="1_xcdgx"]
+
+[node name="SceneEditScreen" type="Control" unique_id=1468167005]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xcdgx")
+
+[node name="Window" type="Window" parent="." unique_id=1280830138]
+oversampling_override = 1.0
+title = "Edit Scene"
+initial_position = 2
+size = Vector2i(480, 320)
+unresizable = true
+
+[node name="Panel" type="Panel" parent="Window" unique_id=1731339914]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameLabel" type="Label" parent="Window/Panel" unique_id=547761237]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.028
+anchor_bottom = 0.028
+offset_top = 0.039992332
+offset_right = 47.0
+offset_bottom = 23.039993
+text = "Name:"
+
+[node name="NameEdit" type="TextEdit" parent="Window/Panel/NameLabel" unique_id=2027722451]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 189.0
+offset_bottom = 30.0
+tab_input_mode = false
+
+[node name="IdLabel" type="Label" parent="Window/Panel" unique_id=1581036272]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.32000002
+anchor_bottom = 0.32000002
+offset_left = 1.5258789e-05
+offset_top = -2.2888184e-05
+offset_right = 47.000015
+offset_bottom = 22.999977
+text = "ID:"
+
+[node name="IdEdit" type="TextEdit" parent="Window/Panel/IdLabel" unique_id=1181084882]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 189.0
+offset_bottom = 30.0
+editable = false
+tab_input_mode = false
+
+[node name="GenerateIdButton" type="Button" parent="Window/Panel/IdLabel" unique_id=952068618]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 4.255
+anchor_top = 1.417
+anchor_right = 4.255
+anchor_bottom = 1.417
+offset_left = 0.014984131
+offset_top = 0.008991241
+offset_right = 101.015
+offset_bottom = 31.008991
+text = "Generate"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/Panel" unique_id=424152423]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.81500006
+anchor_right = 0.25
+anchor_bottom = 0.81500006
+offset_top = -0.14001465
+offset_right = 207.0
+offset_bottom = 39.859985
+
+[node name="AddSceneButton" type="Button" parent="Window/Panel/HBoxContainer" unique_id=2077541503]
+layout_mode = 2
+text = "Add Scene"
+
+[node name="VSeparator" type="VSeparator" parent="Window/Panel/HBoxContainer" unique_id=1154255474]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="CancalButton" type="Button" parent="Window/Panel/HBoxContainer" unique_id=1519383535]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
+[connection signal="pressed" from="Window/Panel/IdLabel/GenerateIdButton" to="." method="_on_generate_id_button_pressed"]
+[connection signal="pressed" from="Window/Panel/HBoxContainer/AddSceneButton" to="." method="_on_add_scene_button_pressed"]
+[connection signal="pressed" from="Window/Panel/HBoxContainer/CancalButton" to="." method="_on_cancal_button_pressed"]

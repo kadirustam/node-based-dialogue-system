@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cmhxkt135n7u"]
+
+[ext_resource type="Script" uid="uid://dn5pqsjj1yb43" path="res://addons/node_based_dialogue_system/SceneView/hub_item.gd" id="1_1w54a"]
+
+[node name="HubItem" type="Label" unique_id=813516145 groups=["hub_item"]]
+text = "Hub Name"
+horizontal_alignment = 1
+script = ExtResource("1_1w54a")
