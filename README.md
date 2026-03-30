@@ -1,4 +1,4 @@
-# node-based-dialogue-system
+# node_based_dialogue_system
 A work in progress Plugin for the Godot Engine to have an Editor to write and Export Dialogue for GameDev purposes.
 
 <img width="1310" height="662" alt="grafik" src="https://github.com/user-attachments/assets/6456c2e8-d249-4171-bce2-497cab5217fd" />
@@ -14,4 +14,4 @@ This Project is still in active Development, this initial Version is functional 
 I am currently working on a Dialogue Heavy RPG and was looking for a Writing Tool to help me with that. As i didn't find Open-Source alternative to Articy, I tried to create something on my own.
 
 # How to Use
-Add the node-based-dialogue-system folder into your Godot Project root/addons/ folder and activate it in the Plugins Menu. If it gives you any Errors or similiar Problems, just leave the Plugin activated and Restart Godot, it should work afterwards.
+Add the node_based_dialogue_system folder into your Godot Project root/addons/ folder and activate it in the Plugins Menu. If it gives you any Errors or similiar Problems, just leave the Plugin activated and Restart Godot, it should work afterwards.
