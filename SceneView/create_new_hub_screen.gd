@@ -9,6 +9,7 @@ var hub_item_scene = load("res://addons/node_based_dialogue_system/SceneView/hub
 
 var chars: Array = ['h', 'i', 'j']
 
+
 func _on_close_requested() -> void:
 	self.queue_free()
 
@@ -17,7 +18,12 @@ func _ready() -> void:
 
 func _on_create_hub_node_button_pressed() -> void:
 	_create_hub()
-	SceneViewGlobal.create_hub_node(_generateId(), "Unnamed Hub")
+	var drag_data = SceneViewGlobal.drag_data
+	if(not drag_data.is_empty()):
+		SceneViewGlobal.create_hub_node(_generateId(), "Unnamed Hub", drag_data.position, drag_data.from_node, drag_data.from_port)
+		SceneViewGlobal.clear_drag_data()
+	else:
+		SceneViewGlobal.create_hub_node(_generateId(), "Unnamed Hub")
 	hub_name_edit.clear()
 	hub_id_edit.clear()
 	_on_close_requested()
