@@ -9,6 +9,9 @@ var selected_scene: Node
 var scene_list: VBoxContainer
 var chars: Array = ['a', 'b', 'c', 'd']
 
+func _ready() -> void:
+	load_scenes()
+
 func create_scene_item(name: String, id: String) -> void:
 	var scene = scene_item_scene.instantiate()
 	scene.set_up_scene_item(name, id)

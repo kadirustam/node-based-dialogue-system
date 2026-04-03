@@ -83,55 +83,6 @@ anchor_bottom = 1.0
 offset_left = 1.9200001
 offset_top = -0.44000244
 right_disconnects = true
-connections = Array[Dictionary]([{
-"from_node": &"DialogueNode",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"HubNode",
-"to_port": 0
-}, {
-"from_node": &"@GraphNode@26541",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"ConditionNode",
-"to_port": 0
-}, {
-"from_node": &"@GraphNode@26554",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"@GraphNode@26567",
-"to_port": 0
-}, {
-"from_node": &"@GraphNode@26567",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"JumpNode",
-"to_port": 0
-}, {
-"from_node": &"HubNode",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"@GraphNode@26541",
-"to_port": 0
-}, {
-"from_node": &"HubNode",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"@GraphNode@26554",
-"to_port": 0
-}, {
-"from_node": &"ConditionNode",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"@GraphNode@26580",
-"to_port": 0
-}, {
-"from_node": &"ConditionNode",
-"from_port": 1,
-"keep_alive": false,
-"to_node": &"@GraphNode@26593",
-"to_port": 0
-}])
 minimap_enabled = false
 show_menu = false
 

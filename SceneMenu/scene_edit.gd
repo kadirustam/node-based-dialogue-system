@@ -10,9 +10,7 @@ var scene = load("res://addons/node_based_dialogue_system/SceneView/scene_view.t
 @onready var scene_list = $Panel/SceneListLabel/SceneList
 
 func _ready() -> void:
-	SceneMenuGlobal.load_scenes()
-
-func _draw() -> void:
+	await get_tree().process_frame
 	SceneMenuGlobal.load_scene_list(scene_list)
 	SceneMenuGlobal.update()
 

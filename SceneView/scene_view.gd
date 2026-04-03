@@ -63,7 +63,7 @@ func _on_export_scene_file_selected(path: String) -> void:
 	save_file.store_line(json_string)
 
 func _on_graph_edit_connection_to_empty(from_node: StringName, from_port: int, release_position: Vector2) -> void:
-	context_menu.position = release_position
+	context_menu.position = get_global_mouse_position()
 	temp_drag_data.from_node = from_node
 	temp_drag_data.from_port = from_port
 	temp_drag_data.position = release_position
