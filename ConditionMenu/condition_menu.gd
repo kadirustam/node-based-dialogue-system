@@ -6,10 +6,10 @@ var create_condition_screen = load("res://addons/node_based_dialogue_system/Cond
 @onready var save_dialog = $Panel/ColorRect/HBoxContainer/SaveConditionsButton/SaveDialog
 @onready var load_dialog = $Panel/ColorRect/HBoxContainer/LoadConditionsButton/LoadDialog
 
-func _draw() -> void:
+func _ready() -> void:
+	await get_tree().process_frame
 	ConditionMenuGlobal.load_condition_list($Panel/ConditionList/VBoxContainer)
 	ConditionMenuGlobal.update()
-
 
 func _on_new_condition_button_pressed() -> void:
 	$Panel/ColorRect/HBoxContainer/NewConditionButton.add_child(create_condition_screen.instantiate())

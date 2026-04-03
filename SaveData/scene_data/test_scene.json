@@ -1,5 +1,5 @@
 {
-	"DialogueNode:<GraphNode#2068161047636>": {
+	"DialogueNode:<GraphNode#2300491931383>": {
 		"actor_name": "SomeGuy",
 		"connections": [
 			{
@@ -14,7 +14,7 @@
 		"texture": "res://.godot/imported/testguy.svg-41071c9a71c371e0bf342f9db98153a0.ctex",
 		"type": "dialogue"
 	},
-	"@GraphNode@21688:<GraphNode#2068815359031>": {
+	"@GraphNode@23387:<GraphNode#2301163020062>": {
 		"actor_name": "OtherGuy",
 		"connections": [
 			{
@@ -29,7 +29,7 @@
 		"texture": "res://.godot/imported/testguy2.svg-4fd29c81343e2c78898310205f30a6eb.ctex",
 		"type": "dialogue"
 	},
-	"@GraphNode@21701:<GraphNode#2069469670533>": {
+	"@GraphNode@23400:<GraphNode#2301817331524>": {
 		"actor_name": "OtherGuy",
 		"connections": [
 			{
@@ -44,7 +44,7 @@
 		"texture": "res://.godot/imported/testguy2.svg-4fd29c81343e2c78898310205f30a6eb.ctex",
 		"type": "dialogue"
 	},
-	"@GraphNode@21714:<GraphNode#2070123981996>": {
+	"@GraphNode@23413:<GraphNode#2302471642986>": {
 		"actor_name": "OtherGuy",
 		"connections": [
 			{
@@ -59,7 +59,7 @@
 		"texture": "res://.godot/imported/testguy2.svg-4fd29c81343e2c78898310205f30a6eb.ctex",
 		"type": "dialogue"
 	},
-	"@GraphNode@21727:<GraphNode#2070778293458>": {
+	"@GraphNode@23426:<GraphNode#2303125954450>": {
 		"actor_name": "OtherGuy",
 		"connections": [],
 		"dialogue_text": "\"I can even check if some Condition is true so it triggers this Dialogue Path!\"",
@@ -67,7 +67,7 @@
 		"texture": "res://.godot/imported/testguy2.svg-4fd29c81343e2c78898310205f30a6eb.ctex",
 		"type": "dialogue"
 	},
-	"@GraphNode@21740:<GraphNode#2071432604920>": {
+	"@GraphNode@23439:<GraphNode#2303780265910>": {
 		"actor_name": "Dangerous Animal",
 		"connections": [],
 		"dialogue_text": "\"You failed the Check, I am gonna eat you now.\"",
@@ -75,7 +75,7 @@
 		"texture": "res://.godot/imported/testbirb.svg-6ba071e7691c591fab411c882805e787.ctex",
 		"type": "dialogue"
 	},
-	"HubNode:<GraphNode#2072086916382>": {
+	"HubNode:<GraphNode#2304434577372>": {
 		"connections": [
 			{
 				"from_node": "7j49324",
@@ -95,14 +95,14 @@
 		"node_id": "7j49324",
 		"type": "hub"
 	},
-	"JumpNode:<GraphNode#2072254688552>": {
+	"JumpNode:<GraphNode#2304602349542>": {
 		"connections": [],
 		"node_id": "8s42785",
 		"target_id": "7j49324",
 		"target_name": "Unnamed Hub",
 		"type": "jump"
 	},
-	"ConditionNode:<GraphNode#2072489569590>": {
+	"ConditionNode:<GraphNode#2304837230580>": {
 		"condition_id": "7e16735",
 		"condition_name": "isThisConditionTrue()",
 		"connections": [

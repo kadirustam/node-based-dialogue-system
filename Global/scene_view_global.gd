@@ -14,6 +14,7 @@ var condition_node_scene = load(
 @onready var window
 
 var chars: Array = ['o', 'p', 'q', 'r', 's']
+@export var drag_data : Dictionary
 
 func create_dialogue_node(actor: Node, dialogue_text: String,
 	node_id: String = _generate_node_id()) -> void:
@@ -24,11 +25,24 @@ func create_dialogue_node(actor: Node, dialogue_text: String,
 			dialogue_text, actor.get_actor_texture())
 		graph.add_child(dialogue_node)
 
-func create_hub_node(hub_id: String, hub_name: String) -> void:
+func create_and_connect_dialogue_node(actor: Node, dialogue_text: String,
+	position: Vector2 = Vector2(0,0), from_node = null, from_port = null,
+	node_id: String = _generate_node_id()) -> void:
+		_close_window()
+		var dialogue_node = dialogue_node_scene.instantiate()
+		dialogue_node.set_up_node(
+			node_id, actor.actor_name,
+			dialogue_text, actor.get_actor_texture())
+		graph.add_child(dialogue_node)
+		_move_node_to_position(dialogue_node, position, from_node, from_port)
+
+func create_hub_node(hub_id: String, hub_name: String, position: Vector2 = Vector2(0,0),
+from_node = null, from_port = null) -> void:
 	_close_window()
 	var hub_node = hub_node_scene.instantiate()
 	hub_node.set_up_node(hub_id, hub_name)
 	graph.add_child(hub_node)
+	_move_node_to_position(hub_node, position, from_node, from_port)
 
 func create_jump_node(hub_name: String, hub_id: String,
 	node_id: String = _generate_node_id()) -> void:
@@ -37,12 +51,34 @@ func create_jump_node(hub_name: String, hub_id: String,
 		jump_node.set_up_node(node_id, hub_name, hub_id)
 		graph.add_child(jump_node)
 
+func create_and_connect_jump_node(hub_name: String, hub_id: String, position: Vector2 = Vector2(0,0), from_node = null, from_port = null,
+	node_id: String = _generate_node_id()) -> void:
+		_close_window()
+		var jump_node = jump_node_scene.instantiate()
+		jump_node.set_up_node(node_id, hub_name, hub_id)
+		graph.add_child(jump_node)
+		_move_node_to_position(jump_node, position, from_node, from_port)
+
 func create_condition_node(name: String, id: String,
 	node_id: String = _generate_node_id()) -> void:
 		_close_window()
 		var condition_node = condition_node_scene.instantiate()
 		condition_node.set_up_node(node_id, name, id)
 		graph.add_child(condition_node)
+
+func create_and_connect_condition_node(name: String, id: String, position: Vector2 = Vector2(0,0), from_node = null, from_port = null,
+	node_id: String = _generate_node_id()) -> void:
+		_close_window()
+		var condition_node = condition_node_scene.instantiate()
+		condition_node.set_up_node(node_id, name, id)
+		graph.add_child(condition_node)
+		_move_node_to_position(condition_node, position, from_node, from_port)
+
+func add_drag_data(dict: Dictionary) -> void:
+	drag_data = dict
+
+func clear_drag_data() -> void:
+	drag_data = {}
 
 func auto_save_scene() -> void:
 	var path = "res://addons/node_based_dialogue_system/SaveData/scene_data/" + SceneMenuGlobal.selected_scene.scene_name.to_snake_case() + ".json"
@@ -93,6 +129,11 @@ func register_scene_view(view: Control) -> void:
 
 func register_create_window(view: Control) -> void:
 	window = view
+
+func _move_node_to_position(node: GraphNode, position: Vector2, from_node, from_port) -> void:
+	node.position_offset = (position + graph.scroll_offset) / graph.zoom
+	if(from_node != null && from_port != null):
+		graph.connect_node(from_node, from_port, node.name, 0)
 
 func _close_window() -> void:
 	if(window):

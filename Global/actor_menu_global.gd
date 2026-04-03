@@ -11,6 +11,9 @@ var selected_actor: Node
 
 var chars = ['l', 'm', 'n']
 
+func _ready() -> void:
+	load_actors()
+
 func create_actor_item(name: String, id: String, img_path: String) -> void:
 	var actor = actor_item_scene.instantiate()
 	actor.set_up_actor_item(name, id, img_path)
@@ -71,7 +74,7 @@ func update() -> void:
 			if(!children.has(actor)):
 				actor_list.add_child(actor)
 
-func load_actor_list(list: Node) -> void:
+func register_list(list: VBoxContainer) -> void:
 	actor_list = list
 
 func set_selected_actor(item: Node) -> void:

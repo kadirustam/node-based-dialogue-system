@@ -5,10 +5,8 @@ var actor_edit_screen = load("res://addons/node_based_dialogue_system/ActorMenu/
 @onready var actor_list = $ActorListLabel/ActorList
 
 func _ready() -> void:
-	ActorMenuGlobal.load_actors()
-
-func _draw() -> void:
-	ActorMenuGlobal.load_actor_list(actor_list)
+	await get_tree().process_frame
+	ActorMenuGlobal.register_list(actor_list)
 	ActorMenuGlobal.update()
 
 func _on_button_pressed() -> void:
