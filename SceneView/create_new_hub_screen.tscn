@@ -16,7 +16,7 @@ initial_position = 2
 size = Vector2i(480, 320)
 unresizable = true
 
-[node name="Panel" type="Panel" parent="Window" unique_id=822973614]
+[node name="Panel" type="Panel" parent="Window" unique_id=1227083876]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -26,10 +26,7 @@ grow_vertical = 2
 [node name="HubNameLabel" type="Label" parent="Window/Panel" unique_id=1359880482]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.002
-anchor_right = 0.002
-offset_left = 0.040029526
-offset_right = 88.04003
+offset_right = 88.0
 offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -48,13 +45,14 @@ offset_bottom = 30.0
 [node name="HubIdLabel" type="Label" parent="Window/Panel" unique_id=1581921113]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.32900003
-anchor_bottom = 0.32900003
-offset_top = 0.039993286
-offset_right = 83.0
-offset_bottom = 23.039993
-grow_horizontal = 2
-grow_vertical = 2
+anchor_left = 0.004
+anchor_top = 0.328
+anchor_right = 0.004
+anchor_bottom = 0.328
+offset_left = 0.08002758
+offset_top = 0.040008545
+offset_right = 83.080025
+offset_bottom = 23.040009
 text = "Hub ID:"
 
 [node name="HubIdEdit" type="TextEdit" parent="Window/Panel/HubIdLabel" unique_id=603247272]
@@ -82,14 +80,14 @@ text = "Generate ID"
 [node name="CreateHubNodeButton" type="Button" parent="Window/Panel" unique_id=930612095]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.44400004
-anchor_top = 0.76100004
-anchor_right = 0.44400004
-anchor_bottom = 0.76100004
-offset_left = -0.08001709
-offset_top = 0.019989014
-offset_right = 59.919983
-offset_bottom = 31.019989
+anchor_left = 0.448
+anchor_top = 0.80600005
+anchor_right = 0.448
+anchor_bottom = 0.80600005
+offset_left = -0.040008545
+offset_top = 0.07998657
+offset_right = 59.95999
+offset_bottom = 31.079987
 text = "Create"
 
 [connection signal="close_requested" from="Window" to="." method="_on_close_requested"]

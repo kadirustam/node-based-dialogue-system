@@ -10,6 +10,7 @@ anchor_bottom = 0.046000004
 offset_right = -299.52002
 offset_bottom = -49.680004
 script = ExtResource("1_8djsc")
+condition_type = null
 
 [node name="ConditionLabel" type="Label" parent="." unique_id=1785277829]
 layout_mode = 1

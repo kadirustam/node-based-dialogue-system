@@ -3,12 +3,14 @@ extends Panel
 
 @export var condition_name: String
 @export var condition_id: String
+@export var condition_type: String
 var selected: bool = false
 
 
-func set_up_condition(name: String, id: String) -> void:
+func set_up_condition(name: String, id: String, type: String) -> void:
 	condition_name = name
 	condition_id = id
+	condition_type = type
 	$ConditionLabel.text = condition_name
 
 

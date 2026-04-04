@@ -1,6 +1,12 @@
 {
-	"ConditionMenuItem:<Panel#1684382224411>": {
+	"ConditionMenuItem:<Panel#91133841276>": {
 		"condition_id": "7e16735",
-		"condition_name": "isThisConditionTrue()"
+		"condition_name": "isThisConditionTrue()",
+		"condition_type": "active"
+	},
+	"ConditionMenuItem:<Panel#91251281795>": {
+		"condition_id": "2f71181",
+		"condition_name": "PassiveCheck()",
+		"condition_type": "passive"
 	}
 }

@@ -13,9 +13,9 @@ var chars = ['e', 'f', 'g']
 func _ready() -> void:
 	load_conditions()
 
-func create_condition_item(name: String, id: String) -> void:
+func create_condition_item(name: String, id: String, type: String) -> void:
 	var condition_menu_item = condition_menu_item_scene.instantiate()
-	condition_menu_item.set_up_condition(name, id)
+	condition_menu_item.set_up_condition(name, id, type)
 	loaded_conditions.append(condition_menu_item)
 	save_conditions()
 	update()
@@ -76,9 +76,9 @@ func load_conditions() -> void:
 func save_scenes_to_json() -> Dictionary:
 	var dict_to_json: Dictionary
 	for condition in loaded_conditions:
-		dict_to_json[condition] = {"condition_name": condition.condition_name, "condition_id": condition.condition_id}
+		dict_to_json[condition] = {"condition_name": condition.condition_name, "condition_id": condition.condition_id, "condition_type": condition.condition_type}
 	return dict_to_json
 
 func load_scenes_from_json(json_data: Dictionary) -> void:
 	for condition in json_data:
-		create_condition_item(json_data.get(condition)["condition_name"], json_data.get(condition)["condition_id"])
+		create_condition_item(json_data.get(condition)["condition_name"], json_data.get(condition)["condition_id"], json_data.get(condition)["condition_type"])

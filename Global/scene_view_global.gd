@@ -20,9 +20,7 @@ func create_dialogue_node(actor: Node, dialogue_text: String,
 	node_id: String = _generate_node_id()) -> void:
 		_close_window()
 		var dialogue_node = dialogue_node_scene.instantiate()
-		dialogue_node.set_up_node(
-			node_id, actor.actor_name,
-			dialogue_text, actor.get_actor_texture())
+		dialogue_node.set_up_node(node_id, actor.actor_name, dialogue_text, actor.get_actor_texture())
 		graph.add_child(dialogue_node)
 
 func create_and_connect_dialogue_node(actor: Node, dialogue_text: String,
@@ -30,9 +28,7 @@ func create_and_connect_dialogue_node(actor: Node, dialogue_text: String,
 	node_id: String = _generate_node_id()) -> void:
 		_close_window()
 		var dialogue_node = dialogue_node_scene.instantiate()
-		dialogue_node.set_up_node(
-			node_id, actor.actor_name,
-			dialogue_text, actor.get_actor_texture())
+		dialogue_node.set_up_node(node_id, actor.actor_name,dialogue_text, actor.get_actor_texture())
 		graph.add_child(dialogue_node)
 		_move_node_to_position(dialogue_node, position, from_node, from_port)
 
@@ -59,18 +55,18 @@ func create_and_connect_jump_node(hub_name: String, hub_id: String, position: Ve
 		graph.add_child(jump_node)
 		_move_node_to_position(jump_node, position, from_node, from_port)
 
-func create_condition_node(name: String, id: String,
+func create_condition_node(name: String, id: String, type: String,
 	node_id: String = _generate_node_id()) -> void:
 		_close_window()
 		var condition_node = condition_node_scene.instantiate()
-		condition_node.set_up_node(node_id, name, id)
+		condition_node.set_up_node(node_id, name, id, type)
 		graph.add_child(condition_node)
 
-func create_and_connect_condition_node(name: String, id: String, position: Vector2 = Vector2(0,0), from_node = null, from_port = null,
+func create_and_connect_condition_node(name: String, id: String, type: String, position: Vector2 = Vector2(0,0), from_node = null, from_port = null,
 	node_id: String = _generate_node_id()) -> void:
 		_close_window()
 		var condition_node = condition_node_scene.instantiate()
-		condition_node.set_up_node(node_id, name, id)
+		condition_node.set_up_node(node_id, name, id, type)
 		graph.add_child(condition_node)
 		_move_node_to_position(condition_node, position, from_node, from_port)
 
@@ -142,9 +138,7 @@ func _close_window() -> void:
 func _save_dialogue_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("dialogue_nodes"):
 		dict_to_json[node] = { "type": "dialogue", "node_id": node.node_id,
-			"actor_name": node.actor_name,
-			"dialogue_text": node.get_dialogue_text(),
-			"texture": node.texture }
+			"actor_name": node.actor_name, "dialogue_text": node.get_dialogue_text(), "texture": node.texture }
 
 func _save_hub_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("hub_nodes"):
@@ -153,14 +147,12 @@ func _save_hub_nodes(dict_to_json: Dictionary) -> void:
 
 func _save_jump_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("jump_nodes"):
-		dict_to_json[node] = { "type": "jump", "node_id": node.node_id,
-			"target_id": node.target_id, "target_name": node.target_name }
+		dict_to_json[node] = { "type": "jump", "node_id": node.node_id, "target_id": node.target_id, "target_name": node.target_name }
 
 func _save_condition_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("condition_nodes"):
-		dict_to_json[node] = { "type": "condition", "node_id": node.node_id,
-			"condition_id": node.condition_id,
-			"condition_name": node.condition_name }
+		dict_to_json[node] = { "type": "condition", "node_id": node.node_id, "condition_id": node.condition_id, "condition_name": node.condition_name,
+			"condition_type": node.condition_type }
 
 func _save_all_connections(dict_to_json: Dictionary) -> void:
 	var all_nodes = _get_all_nodes()
@@ -170,9 +162,7 @@ func _save_all_connections(dict_to_json: Dictionary) -> void:
 			dict_to_json[node]["connections"] = []
 		for connection in connections:
 			if(connection.from_node == node.name):
-				var data = {"from_node": node.node_id,
-					"from_port": connection.from_port,
-					"to_node": graph.get_node(str(connection.to_node)).node_id,
+				var data = {"from_node": node.node_id, "from_port": connection.from_port, "to_node": graph.get_node(str(connection.to_node)).node_id,
 					"to_port": connection.to_port}
 				dict_to_json[node]["connections"].append(data)
 
@@ -203,7 +193,7 @@ func _create_node_from_data(entry: Variant) -> void:
 		"condition":
 			create_condition_node(
 				entry.condition_name,
-				entry.condition_id, entry.node_id
+				entry.condition_id, entry.condition_type, entry.node_id
 			)
 
 func _create_connections_from_data(connections: Variant) -> void:
@@ -238,6 +228,7 @@ func _export_condition_nodes(dict_to_json: Dictionary) -> void:
 		var condition_results: Array = _get_next_nodes_for_condition(node)
 		dict_to_json[node] = { "type": "condition", "id": node.node_id,
 			"condition_to_check": node.condition_name,
+			"condition_type": node.condition_type,
 			"next_node_after_success": condition_results[0],
 			"next_node_after_failure": condition_results[1]
 		}

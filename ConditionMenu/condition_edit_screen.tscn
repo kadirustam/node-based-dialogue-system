@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://7a6xxwvbyrrl"]
 
 [ext_resource type="Script" uid="uid://diaiqr081ebf7" path="res://addons/node_based_dialogue_system/ConditionMenu/condition_edit_screen.gd" id="1_ul8th"]
+[ext_resource type="ButtonGroup" uid="uid://bh43ehaexcke0" path="res://addons/node_based_dialogue_system/Resources/condition_type_button_group.tres" id="2_gym0b"]
 
 [node name="ConditionEditScreen" type="Control" unique_id=96352020]
 layout_mode = 3
@@ -76,6 +77,40 @@ offset_top = -0.0020008087
 offset_right = 80.03
 offset_bottom = 30.998
 text = "Generate"
+
+[node name="Label" type="Label" parent="Window/Panel" unique_id=220445356]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.57500005
+anchor_bottom = 0.57500005
+offset_top = -3.0517578e-05
+offset_right = 40.0
+offset_bottom = 22.99997
+text = "Condition Type:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/Panel/Label" unique_id=2106987127]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ActiveCheckBox" type="CheckBox" parent="Window/Panel/Label/HBoxContainer" unique_id=1806999653]
+layout_mode = 2
+button_pressed = true
+button_group = ExtResource("2_gym0b")
+text = "Active"
+
+[node name="PassiveCheckBox" type="CheckBox" parent="Window/Panel/Label/HBoxContainer" unique_id=772501518]
+layout_mode = 2
+button_group = ExtResource("2_gym0b")
+text = "Passive"
+
+[node name="HiddenCheckBox" type="CheckBox" parent="Window/Panel/Label/HBoxContainer" unique_id=591690383]
+layout_mode = 2
+button_group = ExtResource("2_gym0b")
+text = "Hidden"
 
 [node name="CreateButton" type="Button" parent="Window" unique_id=369003395]
 anchors_preset = -1

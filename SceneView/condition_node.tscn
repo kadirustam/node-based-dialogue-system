@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://orj2kdud7oyu"]
 
 [ext_resource type="Script" uid="uid://d3s4f5ev52iwx" path="res://addons/node_based_dialogue_system/SceneView/condition_node.gd" id="1_30nq8"]
+[ext_resource type="ButtonGroup" uid="uid://bh43ehaexcke0" path="res://addons/node_based_dialogue_system/Resources/condition_type_button_group.tres" id="2_w23kw"]
 
 [node name="ConditionNode" type="GraphNode" unique_id=1546763319 groups=["condition_nodes"]]
 custom_minimum_size = Vector2(300, 100)
@@ -28,7 +29,38 @@ slot/1/right_type = 0
 slot/1/right_color = Color(0.6509804, 0.011764706, 0, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
 script = ExtResource("1_30nq8")
+condition_type = null
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1996643750]
+layout_mode = 2
+
+[node name="ActiveCheckBox" type="CheckBox" parent="HBoxContainer" unique_id=1312453728]
+layout_mode = 2
+disabled = true
+button_group = ExtResource("2_w23kw")
+text = "Active"
+
+[node name="PassiveCheckBox" type="CheckBox" parent="HBoxContainer" unique_id=894894365]
+layout_mode = 2
+disabled = true
+button_group = ExtResource("2_w23kw")
+text = "Passive"
+
+[node name="HiddenCheckBox" type="CheckBox" parent="HBoxContainer" unique_id=525915694]
+layout_mode = 2
+disabled = true
+button_group = ExtResource("2_w23kw")
+text = "Hidden"
 
 [node name="SlotSlut" type="Label" parent="." unique_id=1400418622]
 layout_mode = 2
