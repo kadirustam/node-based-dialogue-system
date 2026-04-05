@@ -137,34 +137,34 @@ func _close_window() -> void:
 
 func _save_dialogue_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("dialogue_nodes"):
-		dict_to_json[node] = { "type": "dialogue", "node_id": node.node_id,
+		dict_to_json[node.node_id] = { "type": "dialogue", "node_id": node.node_id,
 			"actor_name": node.actor_name, "dialogue_text": node.get_dialogue_text(), "texture": node.texture }
 
 func _save_hub_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("hub_nodes"):
-		dict_to_json[node] = { "type": "hub", "node_id": node.node_id,
+		dict_to_json[node.node_id] = { "type": "hub", "node_id": node.node_id,
 			"hub_id": node.hub_id, "hub_name": node.hub_name }
 
 func _save_jump_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("jump_nodes"):
-		dict_to_json[node] = { "type": "jump", "node_id": node.node_id, "target_id": node.target_id, "target_name": node.target_name }
+		dict_to_json[node.node_id] = { "type": "jump", "node_id": node.node_id, "target_id": node.target_id, "target_name": node.target_name }
 
 func _save_condition_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("condition_nodes"):
-		dict_to_json[node] = { "type": "condition", "node_id": node.node_id, "condition_id": node.condition_id, "condition_name": node.condition_name,
+		dict_to_json[node.node_id] = { "type": "condition", "node_id": node.node_id, "condition_id": node.condition_id, "condition_name": node.condition_name,
 			"condition_type": node.condition_type }
 
 func _save_all_connections(dict_to_json: Dictionary) -> void:
 	var all_nodes = _get_all_nodes()
 	var connections = graph.get_connection_list()
 	for node in all_nodes:
-		if not dict_to_json[node].has("connections"):
-			dict_to_json[node]["connections"] = []
+		if not dict_to_json[node.node_id].has("connections"):
+			dict_to_json[node.node_id]["connections"] = []
 		for connection in connections:
 			if(connection.from_node == node.name):
 				var data = {"from_node": node.node_id, "from_port": connection.from_port, "to_node": graph.get_node(str(connection.to_node)).node_id,
 					"to_port": connection.to_port}
-				dict_to_json[node]["connections"].append(data)
+				dict_to_json[node.node_id]["connections"].append(data)
 
 func _get_all_nodes() -> Array:
 	var all_nodes = []
@@ -191,11 +191,14 @@ func _create_node_from_data(entry: Variant) -> void:
 func _create_connections_from_data(connections: Variant) -> void:
 	for connection in connections:
 		graph.connect_node(
-			_get_node_from_id(connection.from_node).name, connection.from_port, _get_node_from_id(connection.to_node).name, connection.to_port)
+			_get_node_from_id(connection.from_node).name, connection.from_port,
+			_get_node_from_id(connection.to_node).name, connection.to_port
+			)
+		print("connected " + _get_node_from_id(connection.from_node).name + " and " + _get_node_from_id(connection.to_node).name)
 
 func _export_dialogue_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("dialogue_nodes"):
-		dict_to_json[node] = { "type": "dialogue", "id": node.node_id,
+		dict_to_json[node.node_id] = { "type": "dialogue", "id": node.node_id,
 			"actor_name": node.actor_name,
 			"dialogue_text": node.get_dialogue_text(),
 			"next_node": _get_next_node_for_dialogue(node)
@@ -203,20 +206,20 @@ func _export_dialogue_nodes(dict_to_json: Dictionary) -> void:
 
 func _export_hub_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("hub_nodes"):
-		dict_to_json[node] = { "type": "hub", "id": node.node_id,
+		dict_to_json[node.node_id] = { "type": "hub", "id": node.node_id,
 			"next_nodes": _get_next_nodes_for_hub(node)
 		}
 
 func _export_jump_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("jump_nodes"):
-		dict_to_json[node] = { "type": "jump", "id": node.node_id,
+		dict_to_json[node.node_id] = { "type": "jump", "id": node.node_id,
 			"target_node": node.target_id
 		}
 
 func _export_condition_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("condition_nodes"):
 		var condition_results: Array = _get_next_nodes_for_condition(node)
-		dict_to_json[node] = { "type": "condition", "id": node.node_id,
+		dict_to_json[node.node_id] = { "type": "condition", "id": node.node_id,
 			"condition_to_check": node.condition_name,
 			"condition_type": node.condition_type,
 			"next_node_after_success": condition_results[0],
@@ -256,6 +259,7 @@ func _save_to_scene() -> Dictionary:
 	return dict_to_json
 
 func _load_to_scene(json_data: Dictionary) -> void:
+	graph.clear_connections()
 	for entry in json_data:
 		_create_node_from_data(json_data.get(entry))
 	for entry in json_data:
