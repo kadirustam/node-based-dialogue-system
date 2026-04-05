@@ -7,14 +7,14 @@ var create_hub_node_scene = load("res://addons/node_based_dialogue_system/SceneV
 var create_jump_node_scene = load("res://addons/node_based_dialogue_system/SceneView/create_new_jump_screen.tscn")
 var scene_edit = load("res://addons/node_based_dialogue_system/SceneMenu/scene_edit.tscn")
 
-@onready var graph_editor: GraphEdit = $GraphEdit
-@onready var export_dialogue: FileDialog = $ColorRect/HBoxContainer/ExportSceneButton/ExportScene
+@onready var graph_editor: GraphEdit = $VBoxContainer/GraphEdit
+@onready var export_dialogue: FileDialog = $VBoxContainer/ColorRect/HBoxContainer/ExportSceneButton/ExportScene
 @onready var context_menu: PopupMenu = $PopupMenu
 
 var temp_drag_data: Dictionary = {"from_node": null, "from_port" : null, "position": null}
 
 func _ready() -> void:
-	SceneViewGlobal.register_scene_view($GraphEdit)
+	SceneViewGlobal.register_scene_view(graph_editor)
 	SceneViewGlobal.auto_load_scene()
 
 func _on_new_node_button_pressed() -> void:
@@ -30,10 +30,10 @@ func _on_new_condition_node_button_pressed() -> void:
 	add_child(screen)
 
 func _on_graph_edit_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
-	$GraphEdit.connect_node(from_node, from_port, to_node, to_port)
+	graph_editor.connect_node(from_node, from_port, to_node, to_port)
 
 func _on_graph_edit_disconnection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
-	$GraphEdit.disconnect_node(from_node, from_port, to_node, to_port)
+	graph_editor.disconnect_node(from_node, from_port, to_node, to_port)
 
 func _on_new_hub_node_button_pressed() -> void:
 	var screen = create_hub_node_scene.instantiate()
@@ -47,7 +47,7 @@ func _on_delete_selected_node_button_pressed() -> void:
 	SceneViewGlobal.delete_selected_nodes(nodes)
 
 func _on_arange_nodes_button_pressed() -> void:
-	$GraphEdit.arrange_nodes()
+	graph_editor.arrange_nodes()
 
 func _on_return_to_scene_view_button_pressed() -> void:
 	SceneViewGlobal.auto_save_scene()

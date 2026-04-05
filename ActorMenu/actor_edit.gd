@@ -2,7 +2,7 @@
 extends Control
 
 var actor_edit_screen = load("res://addons/node_based_dialogue_system/ActorMenu/actor_edit_screen.tscn")
-@onready var actor_list = $ActorListLabel/ActorList
+@onready var actor_list = $VBoxContainer/ScrollContainer/VBoxContainer/ActorList
 
 func _ready() -> void:
 	await get_tree().process_frame

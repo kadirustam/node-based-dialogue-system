@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ghiuk")
 
-[node name="Panel" type="Panel" parent="." unique_id=1231738836]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1939253939]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,82 +19,76 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Panel" unique_id=862503873]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer" unique_id=862503873]
 custom_minimum_size = Vector2(0, 50)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
+layout_mode = 2
 color = Color(0, 0.5882353, 0, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/ColorRect" unique_id=2039223515]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColorRect" unique_id=2039223515]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 301.0
+offset_bottom = 50.0
 
-[node name="AddActorButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=1354835126]
+[node name="AddActorButton" type="Button" parent="VBoxContainer/ColorRect/HBoxContainer" unique_id=1354835126]
 layout_mode = 2
 text = "Add Actor"
 
-[node name="EditActorButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=1437671733]
+[node name="EditActorButton" type="Button" parent="VBoxContainer/ColorRect/HBoxContainer" unique_id=1437671733]
 layout_mode = 2
 text = "Edit Actor"
 
-[node name="RemoveActorButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=470723766]
+[node name="RemoveActorButton" type="Button" parent="VBoxContainer/ColorRect/HBoxContainer" unique_id=470723766]
 layout_mode = 2
 text = "Remove Actor"
 
-[node name="VSeparator" type="VSeparator" parent="Panel/ColorRect/HBoxContainer" unique_id=1059901551]
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/ColorRect/HBoxContainer" unique_id=1059901551]
 layout_mode = 2
 
-[node name="SaveActorsButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=691305436]
+[node name="SaveActorsButton" type="Button" parent="VBoxContainer/ColorRect/HBoxContainer" unique_id=691305436]
 visible = false
 layout_mode = 2
 text = "Save Actors"
 
-[node name="SaveJson" type="FileDialog" parent="Panel/ColorRect/HBoxContainer/SaveActorsButton" unique_id=1504102609]
+[node name="SaveJson" type="FileDialog" parent="VBoxContainer/ColorRect/HBoxContainer/SaveActorsButton" unique_id=1504102609]
 use_native_dialog = true
 
-[node name="LoadActorsButton" type="Button" parent="Panel/ColorRect/HBoxContainer" unique_id=2040150169]
+[node name="LoadActorsButton" type="Button" parent="VBoxContainer/ColorRect/HBoxContainer" unique_id=2040150169]
 visible = false
 layout_mode = 2
 text = "Load Actors"
 
-[node name="FileDialog" type="FileDialog" parent="Panel/ColorRect/HBoxContainer/LoadActorsButton" unique_id=2069175548]
+[node name="FileDialog" type="FileDialog" parent="VBoxContainer/ColorRect/HBoxContainer/LoadActorsButton" unique_id=2069175548]
 title = "Open a File"
 initial_position = 2
 file_mode = 0
 access = 2
 use_native_dialog = true
 
-[node name="ActorListLabel" type="Label" parent="." unique_id=77637378]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.012
-anchor_top = 0.046000004
-anchor_right = 0.012
-anchor_bottom = 0.046000004
-offset_left = 0.9599991
-offset_top = 0.31999588
-offset_right = 78.96
-offset_bottom = 23.319996
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=814270830]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+draw_focus_border = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=294163521]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ActorListLabel" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=77637378]
+layout_mode = 2
 text = "Actor List:"
 
-[node name="ActorList" type="VBoxContainer" parent="ActorListLabel" unique_id=550571289]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_right = 1866.0
-offset_bottom = 972.0
+[node name="ActorList" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=550571289]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_vertical = 3
 
-[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/AddActorButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/EditActorButton" to="." method="_on_edit_actor_button_pressed"]
-[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/RemoveActorButton" to="." method="_on_remove_actor_button_pressed"]
-[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/SaveActorsButton" to="." method="_on_save_actors_button_pressed"]
-[connection signal="file_selected" from="Panel/ColorRect/HBoxContainer/SaveActorsButton/SaveJson" to="." method="_on_save_json_file_selected"]
-[connection signal="pressed" from="Panel/ColorRect/HBoxContainer/LoadActorsButton" to="." method="_on_load_actors_button_pressed"]
-[connection signal="file_selected" from="Panel/ColorRect/HBoxContainer/LoadActorsButton/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/AddActorButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/EditActorButton" to="." method="_on_edit_actor_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/RemoveActorButton" to="." method="_on_remove_actor_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/SaveActorsButton" to="." method="_on_save_actors_button_pressed"]
+[connection signal="file_selected" from="VBoxContainer/ColorRect/HBoxContainer/SaveActorsButton/SaveJson" to="." method="_on_save_json_file_selected"]
+[connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/LoadActorsButton" to="." method="_on_load_actors_button_pressed"]
+[connection signal="file_selected" from="VBoxContainer/ColorRect/HBoxContainer/LoadActorsButton/FileDialog" to="." method="_on_file_dialog_file_selected"]

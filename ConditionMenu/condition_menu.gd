@@ -3,16 +3,17 @@ extends Control
 
 var create_condition_screen = load("res://addons/node_based_dialogue_system/ConditionMenu/condition_edit_screen.tscn")
 
-@onready var save_dialog = $Panel/ColorRect/HBoxContainer/SaveConditionsButton/SaveDialog
-@onready var load_dialog = $Panel/ColorRect/HBoxContainer/LoadConditionsButton/LoadDialog
+@onready var save_dialog = $VBoxContainer/ColorRect/HBoxContainer/SaveConditionsButton/SaveDialog
+@onready var load_dialog = $VBoxContainer/ColorRect/HBoxContainer/LoadConditionsButton/LoadDialog
+
 
 func _ready() -> void:
 	await get_tree().process_frame
-	ConditionMenuGlobal.load_condition_list($Panel/ConditionList/VBoxContainer)
+	ConditionMenuGlobal.load_condition_list($VBoxContainer/ScrollContainer/VBoxContainer/ConditionListBox)
 	ConditionMenuGlobal.update()
 
 func _on_new_condition_button_pressed() -> void:
-	$Panel/ColorRect/HBoxContainer/NewConditionButton.add_child(create_condition_screen.instantiate())
+	$VBoxContainer/ColorRect/HBoxContainer/NewConditionButton.add_child(create_condition_screen.instantiate())
 
 func _on_remove_condition_button_pressed() -> void:
 	ConditionMenuGlobal.remove_selected_condition()

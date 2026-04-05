@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://muquc34nssm7" path="res://addons/node_based_dialogue_system/SceneView/dialogue_node.gd" id="1_af0ot"]
 
 [node name="DialogueNode" type="GraphNode" unique_id=22876433 groups=["dialogue_nodes"]]
+custom_minimum_size = Vector2(500, 330)
 offset_right = 500.0
 offset_bottom = 300.0
 title = "Dialogue Node"
@@ -64,6 +65,6 @@ theme_override_font_sizes/font_size = 24
 text = "Dialogue Text:"
 
 [node name="DialogueEdit" type="TextEdit" parent="." unique_id=1851246686]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 107)
 layout_mode = 2
 wrap_mode = 1

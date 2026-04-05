@@ -183,25 +183,15 @@ func _get_node_from_id(node_id: String) -> Node:
 
 func _create_node_from_data(entry: Variant) -> void:
 	match entry.type:
-		"dialogue":
-			create_dialogue_node(
-				ActorMenuGlobal.get_actor_from_list(entry.actor_name),
-				entry.dialogue_text, entry.node_id
-			)
+		"dialogue": create_dialogue_node(ActorMenuGlobal.get_actor_from_list(entry.actor_name), entry.dialogue_text, entry.node_id)
 		"hub": create_hub_node(entry.hub_id, entry.hub_name)
 		"jump": create_jump_node(entry.target_name, entry.target_id, entry.node_id)
-		"condition":
-			create_condition_node(
-				entry.condition_name,
-				entry.condition_id, entry.condition_type, entry.node_id
-			)
+		"condition": create_condition_node(entry.condition_name,entry.condition_id, entry.condition_type, entry.node_id)
 
 func _create_connections_from_data(connections: Variant) -> void:
 	for connection in connections:
 		graph.connect_node(
-			_get_node_from_id(connection.from_node).name, connection.from_port,
-			_get_node_from_id(connection.to_node).name, connection.to_port
-			)
+			_get_node_from_id(connection.from_node).name, connection.from_port, _get_node_from_id(connection.to_node).name, connection.to_port)
 
 func _export_dialogue_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("dialogue_nodes"):

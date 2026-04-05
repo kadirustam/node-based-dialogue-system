@@ -4,10 +4,10 @@ extends Control
 var scene_edit_screen = load("res://addons/node_based_dialogue_system/SceneMenu/scene_edit_screen.tscn")
 var scene = load("res://addons/node_based_dialogue_system/SceneView/scene_view.tscn")
 
-@onready var delete_confirm = $Panel/ColorRect/HBoxContainer/DeleteSceneButton/DeleteConfirm
-@onready var save_file_dialog = $Panel/ColorRect/HBoxContainer/SaveScenesButton/SaveFileDialog
-@onready var load_file_dialog = $Panel/ColorRect/HBoxContainer/LoadScenesButton/LoadFileDialog
-@onready var scene_list = $Panel/SceneListLabel/SceneList
+@onready var delete_confirm = $VBoxContainer/ColorRect/HBoxContainer/DeleteSceneButton/DeleteConfirm
+@onready var save_file_dialog = $VBoxContainer/ColorRect/HBoxContainer/SaveScenesButton/SaveFileDialog
+@onready var load_file_dialog = $VBoxContainer/ColorRect/HBoxContainer/LoadScenesButton/LoadFileDialog
+@onready var scene_list = $VBoxContainer/ScrollContainer/VBoxContainer/SceneList
 
 func _ready() -> void:
 	await get_tree().process_frame

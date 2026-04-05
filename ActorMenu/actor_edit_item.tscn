@@ -3,9 +3,13 @@
 [ext_resource type="Script" uid="uid://cv0cxhnfd6ap6" path="res://addons/node_based_dialogue_system/ActorMenu/actor_edit_item.gd" id="1_n8nii"]
 
 [node name="Panel" type="Panel" unique_id=1484409596]
-custom_minimum_size = Vector2(300, 50)
-offset_right = 140.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 script = ExtResource("1_n8nii")
 
 [node name="Label" type="Label" parent="." unique_id=977078168]
@@ -22,7 +26,6 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
-text = "SomeItem"
 horizontal_alignment = 1
 
 [node name="ActorTexture" type="TextureRect" parent="." unique_id=1462216575]

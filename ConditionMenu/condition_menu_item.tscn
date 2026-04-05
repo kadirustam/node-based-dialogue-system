@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://ww2yvsyaoe3m" path="res://addons/node_based_dialogue_system/ConditionMenu/condition_menu_item.gd" id="1_8djsc"]
 
 [node name="ConditionMenuItem" type="Panel" unique_id=1217227636]
-custom_minimum_size = Vector2(300, 50)
-anchors_preset = -1
-anchor_right = 0.156
-anchor_bottom = 0.046000004
-offset_right = -299.52002
-offset_bottom = -49.680004
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 script = ExtResource("1_8djsc")
-condition_type = null
 
 [node name="ConditionLabel" type="Label" parent="." unique_id=1785277829]
 layout_mode = 1
