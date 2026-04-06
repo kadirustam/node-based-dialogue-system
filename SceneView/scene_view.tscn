@@ -78,55 +78,6 @@ text = "Delete Selected Nodes"
 layout_mode = 2
 size_flags_vertical = 3
 right_disconnects = true
-connections = Array[Dictionary]([{
-"from_node": &"DialogueNode",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"HubNode",
-"to_port": 0
-}, {
-"from_node": &"@GraphNode@446439",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"ConditionNode",
-"to_port": 0
-}, {
-"from_node": &"@GraphNode@446452",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"@GraphNode@446465",
-"to_port": 0
-}, {
-"from_node": &"@GraphNode@446465",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"JumpNode",
-"to_port": 0
-}, {
-"from_node": &"HubNode",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"@GraphNode@446439",
-"to_port": 0
-}, {
-"from_node": &"HubNode",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"@GraphNode@446452",
-"to_port": 0
-}, {
-"from_node": &"ConditionNode",
-"from_port": 0,
-"keep_alive": false,
-"to_node": &"@GraphNode@446478",
-"to_port": 0
-}, {
-"from_node": &"ConditionNode",
-"from_port": 1,
-"keep_alive": false,
-"to_node": &"@GraphNode@446491",
-"to_port": 0
-}])
 minimap_enabled = false
 show_menu = false
 

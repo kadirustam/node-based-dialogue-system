@@ -100,6 +100,7 @@ func export_scene() -> Dictionary:
 	_export_hub_nodes(dict_to_json)
 	_export_jump_nodes(dict_to_json)
 	_export_condition_nodes(dict_to_json)
+	_determine_root_node_for_export(dict_to_json)
 	return dict_to_json
 
 func get_selected_node_names() -> Array[StringName]:
@@ -190,11 +191,7 @@ func _create_node_from_data(entry: Variant) -> void:
 
 func _create_connections_from_data(connections: Variant) -> void:
 	for connection in connections:
-		graph.connect_node(
-			_get_node_from_id(connection.from_node).name, connection.from_port,
-			_get_node_from_id(connection.to_node).name, connection.to_port
-			)
-		print("connected " + _get_node_from_id(connection.from_node).name + " and " + _get_node_from_id(connection.to_node).name)
+		graph.connect_node(_get_node_from_id(connection.from_node).name, connection.from_port, _get_node_from_id(connection.to_node).name, connection.to_port)
 
 func _export_dialogue_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("dialogue_nodes"):
@@ -240,6 +237,27 @@ func _get_next_nodes_for_hub(node: GraphNode) -> Array:
 		if(graph.get_node(str(connection.to_node)).node_id != node.node_id):
 			nodes.append(graph.get_node(str(connection.to_node)).node_id)
 	return nodes
+
+func _determine_root_node_for_export(dict_to_json: Dictionary) -> void:
+	var node_has_reference : Dictionary
+	for entry in dict_to_json:
+		var node = dict_to_json.get(entry)
+		if node.has("next_node"):
+			node_has_reference[node["next_node"]] = true
+		if node.has("target_node"):
+			node_has_reference[node["target_node"]] = true
+		if node.has("next_node_after_success"):
+			node_has_reference[node["next_node_after_success"]] = true
+		if node.has("next_node_after_failure"):
+			node_has_reference[node["next_node_after_failure"]] = true
+		if node.has("next_nodes"):
+			for next_id in node["next_nodes"]:
+				node_has_reference[next_id] = true
+	for entry in dict_to_json:
+		var node = dict_to_json[entry]["id"]
+		if not node_has_reference.has(node):
+			dict_to_json[node]["isRoot"] = true
+			return
 
 func _get_next_nodes_for_condition(node: GraphNode) -> Array:
 	var nodes: Array
