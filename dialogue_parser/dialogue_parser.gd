@@ -3,15 +3,17 @@ class_name DialogueParser
 
 @export var dialogue_ressource: Dictionary
 var root: Dictionary
-var current: Dictionary
+var current: Variant
 
 func _init(ressource: Dictionary) -> void:
 	dialogue_ressource = ressource
 	root = _load_root_node()
 	current = root
 
-func get_node_from_data(id: String) -> Dictionary:
+func get_node_from_data(id: String) -> Variant:
 	var found_node: Dictionary
+	if(id == "-1"):
+		return -1
 	for entry in dialogue_ressource:
 		var node = dialogue_ressource.get(entry)
 		if(node.id == id):
@@ -35,22 +37,12 @@ func set_next_node(id: String = "") -> void:
 	else:
 		current = get_node_from_data(id)
 
-func _handle_next_node(current: Dictionary) -> Variant:
+func _handle_next_node(current: Variant) -> Variant:
+	if(current is not Dictionary and current == -1):
+		return -1
 	match(current.type):
 		"dialogue": return get_node_from_data(current.next_node)
-		"hub": return get_hub_interactions(current.next_nodes)
+		"hub": return get_node_from_data(current.id)
 		"jump": return get_node_from_data(current.target_node)
-		"condition": return skill_check(current)
+		"condition": return get_node_from_data(current.id)
 	return null
-
-func get_hub_interactions(next_nodes: Array) -> Dictionary:
-	var user_interactions: Dictionary
-	for node in next_nodes:
-		user_interactions[node] = get_node_from_data(node)
-	return user_interactions
-
-func skill_check(current: Dictionary) -> Dictionary:
-	if((randi() % 100) % 2 == 0):
-		return get_node_from_data(current.next_node_after_success)
-	else:
-		return get_node_from_data(current.next_node_after_failure)
