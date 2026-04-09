@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b73ofjyndisuq"]
+
+[ext_resource type="Script" uid="uid://bttov4rwhe4k5" path="res://addons/node_based_dialogue_system/node_types/event_node.gd" id="1_vbjk2"]
+
+[node name="EventNode" type="GraphNode" unique_id=124267257 groups=["event_nodes"]]
+custom_minimum_size = Vector2(200, 100)
+title = "Event Node"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(0.26352167, 8.105218e-05, 0.95686847, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(0.2627451, 0, 0.95686275, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_vbjk2")
+
+[node name="EventName" type="Label" parent="." unique_id=1678712618]
+layout_mode = 2
+text = "Node Name"
+horizontal_alignment = 1

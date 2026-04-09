@@ -9,6 +9,8 @@ var jump_node_scene = load(
 	"res://addons/node_based_dialogue_system/SceneView/jump_node.tscn")
 var condition_node_scene = load(
 	"res://addons/node_based_dialogue_system/SceneView/condition_node.tscn")
+var event_node_scene = load(
+	"res://addons/node_based_dialogue_system/node_types/event_node.tscn")
 
 @onready var graph: GraphEdit
 @onready var window
@@ -70,6 +72,14 @@ func create_and_connect_condition_node(name: String, id: String, type: String, p
 		graph.add_child(condition_node)
 		_move_node_to_position(condition_node, position, from_node, from_port)
 
+func create_event_node(event_id: String, event_name: String, position: Vector2 = Vector2(0,0),
+from_node = null, from_port = null) -> void:
+	_close_window()
+	var event_node = event_node_scene.instantiate()
+	event_node.set_up_node(event_id, event_name)
+	graph.add_child(event_node)
+	_move_node_to_position(event_node, position, from_node, from_port)
+
 func add_drag_data(dict: Dictionary) -> void:
 	drag_data = dict
 
@@ -100,6 +110,8 @@ func export_scene() -> Dictionary:
 	_export_hub_nodes(dict_to_json)
 	_export_jump_nodes(dict_to_json)
 	_export_condition_nodes(dict_to_json)
+	_export_event_nodes(dict_to_json)
+	_determine_root_node_for_export(dict_to_json)
 	return dict_to_json
 
 func get_selected_node_names() -> Array[StringName]:
@@ -154,6 +166,10 @@ func _save_condition_nodes(dict_to_json: Dictionary) -> void:
 		dict_to_json[node.node_id] = { "type": "condition", "node_id": node.node_id, "condition_id": node.condition_id, "condition_name": node.condition_name,
 			"condition_type": node.condition_type }
 
+func _save_event_nodes(dict_to_json: Dictionary) -> void:
+	for node in get_tree().get_nodes_in_group("event_nodes"):
+		dict_to_json[node.node_id] = { "type": "event", "node_id": node.node_id, "event_id": node.event_id, "event": node.event }
+
 func _save_all_connections(dict_to_json: Dictionary) -> void:
 	var all_nodes = _get_all_nodes()
 	var connections = graph.get_connection_list()
@@ -172,6 +188,7 @@ func _get_all_nodes() -> Array:
 	all_nodes.append_array(get_tree().get_nodes_in_group("hub_nodes"))
 	all_nodes.append_array(get_tree().get_nodes_in_group("jump_nodes"))
 	all_nodes.append_array(get_tree().get_nodes_in_group("condition_nodes"))
+	all_nodes.append_array(get_tree().get_nodes_in_group("event_nodes"))
 	return all_nodes
 
 func _get_node_from_id(node_id: String) -> Node:
@@ -187,14 +204,11 @@ func _create_node_from_data(entry: Variant) -> void:
 		"hub": create_hub_node(entry.hub_id, entry.hub_name)
 		"jump": create_jump_node(entry.target_name, entry.target_id, entry.node_id)
 		"condition": create_condition_node(entry.condition_name,entry.condition_id, entry.condition_type, entry.node_id)
+		"event": create_event_node(entry.event_id, entry.event)
 
 func _create_connections_from_data(connections: Variant) -> void:
 	for connection in connections:
-		graph.connect_node(
-			_get_node_from_id(connection.from_node).name, connection.from_port,
-			_get_node_from_id(connection.to_node).name, connection.to_port
-			)
-		print("connected " + _get_node_from_id(connection.from_node).name + " and " + _get_node_from_id(connection.to_node).name)
+		graph.connect_node(_get_node_from_id(connection.from_node).name, connection.from_port, _get_node_from_id(connection.to_node).name, connection.to_port)
 
 func _export_dialogue_nodes(dict_to_json: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("dialogue_nodes"):
@@ -226,6 +240,13 @@ func _export_condition_nodes(dict_to_json: Dictionary) -> void:
 			"next_node_after_failure": condition_results[1]
 		}
 
+func _export_event_nodes(dict_to_json: Dictionary) -> void:
+	for node in get_tree().get_nodes_in_group("event_nodes"):
+		dict_to_json[node.node_id] = { "type": "event", "id": node.node_id,
+				"event": node.event,
+				"next_node": _get_next_node_for_dialogue(node)
+			}
+
 func _get_next_node_for_dialogue(node: GraphNode) -> String:
 	var node_id: String
 	for connection in graph.get_connection_list_from_node(node.name):
@@ -241,6 +262,27 @@ func _get_next_nodes_for_hub(node: GraphNode) -> Array:
 			nodes.append(graph.get_node(str(connection.to_node)).node_id)
 	return nodes
 
+func _determine_root_node_for_export(dict_to_json: Dictionary) -> void:
+	var node_has_reference : Dictionary
+	for entry in dict_to_json:
+		var node = dict_to_json.get(entry)
+		if node.has("next_node"):
+			node_has_reference[node["next_node"]] = true
+		if node.has("target_node"):
+			node_has_reference[node["target_node"]] = true
+		if node.has("next_node_after_success"):
+			node_has_reference[node["next_node_after_success"]] = true
+		if node.has("next_node_after_failure"):
+			node_has_reference[node["next_node_after_failure"]] = true
+		if node.has("next_nodes"):
+			for next_id in node["next_nodes"]:
+				node_has_reference[next_id] = true
+	for entry in dict_to_json:
+		var node = dict_to_json[entry]["id"]
+		if not node_has_reference.has(node):
+			dict_to_json[node]["isRoot"] = true
+			return
+
 func _get_next_nodes_for_condition(node: GraphNode) -> Array:
 	var nodes: Array
 	for connection in graph.get_connection_list_from_node(node.name):
@@ -255,6 +297,7 @@ func _save_to_scene() -> Dictionary:
 	_save_hub_nodes(dict_to_json)
 	_save_jump_nodes(dict_to_json)
 	_save_condition_nodes(dict_to_json)
+	_save_event_nodes(dict_to_json)
 	_save_all_connections(dict_to_json)
 	return dict_to_json
 

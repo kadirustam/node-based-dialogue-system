@@ -1,7 +1,14 @@
 {
 	"0p92706": {
 		"actor_name": "Dangerous Animal",
-		"connections": [],
+		"connections": [
+			{
+				"from_node": "0p92706",
+				"from_port": 0,
+				"to_node": "8p34756",
+				"to_port": 0
+			}
+		],
 		"dialogue_text": "\"You failed the Check, I am gonna eat you now.\"",
 		"node_id": "0p92706",
 		"texture": "res://.godot/imported/testbirb.svg-6ba071e7691c591fab411c882805e787.ctex",
@@ -100,6 +107,13 @@
 		"hub_name": "Unnamed Hub",
 		"node_id": "7j49324",
 		"type": "hub"
+	},
+	"8p34756": {
+		"connections": [],
+		"event": "youDie",
+		"event_id": "8p34756",
+		"node_id": "8p34756",
+		"type": "event"
 	},
 	"8s42785": {
 		"connections": [],
