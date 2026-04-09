@@ -46,6 +46,10 @@ text = "New Jump Node"
 layout_mode = 2
 text = "New Condition Node"
 
+[node name="NewEventNodeButton" type="Button" parent="VBoxContainer/ColorRect/HBoxContainer" unique_id=323720241]
+layout_mode = 2
+text = "New Event Node"
+
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer/ColorRect/HBoxContainer" unique_id=542520327]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -85,7 +89,7 @@ show_menu = false
 oversampling_override = 1.0
 size = Vector2i(193, 100)
 prefer_native_menu = true
-item_count = 4
+item_count = 5
 item_0/text = "New Dialogue Node"
 item_0/id = 0
 item_1/text = "New Hub Node"
@@ -94,11 +98,14 @@ item_2/text = "New Jump Node"
 item_2/id = 2
 item_3/text = "New Condition Node"
 item_3/id = 3
+item_4/text = "New Event Node"
+item_4/id = 4
 
 [connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/NewDialogueNodeButton" to="." method="_on_new_node_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/NewHubNodeButton" to="." method="_on_new_hub_node_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/NewJumpNodeButton" to="." method="_on_new_jump_node_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/NewConditionNodeButton" to="." method="_on_new_condition_node_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/NewEventNodeButton" to="." method="_on_new_event_node_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/ReturnToSceneViewButton" to="." method="_on_return_to_scene_view_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/ExportSceneButton" to="." method="_on_export_scene_button_pressed"]
 [connection signal="file_selected" from="VBoxContainer/ColorRect/HBoxContainer/ExportSceneButton/ExportScene" to="." method="_on_export_scene_file_selected"]

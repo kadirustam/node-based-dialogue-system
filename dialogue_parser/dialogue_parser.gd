@@ -38,11 +38,12 @@ func set_next_node(id: String = "") -> void:
 		current = get_node_from_data(id)
 
 func _handle_next_node(current: Variant) -> Variant:
+	var next: Variant
 	if(current is not Dictionary and current == -1):
 		return -1
 	match(current.type):
-		"dialogue": return get_node_from_data(current.next_node)
-		"hub": return get_node_from_data(current.id)
-		"jump": return get_node_from_data(current.target_node)
-		"condition": return get_node_from_data(current.id)
-	return null
+		"dialogue": next = get_node_from_data(current.next_node)
+		"hub": next = get_node_from_data(current.id)
+		"jump": next = get_node_from_data(current.target_node)
+		"condition": next = get_node_from_data(current.id)
+	return next

@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://co74occbvephf"]
+
+[ext_resource type="Script" uid="uid://dwj8b1iq1g33q" path="res://addons/node_based_dialogue_system/SceneView/create_new_event_scene.gd" id="1_22lvy"]
+
+[node name="CreateNewEventScene" type="Control" unique_id=185937631]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 265.0
+offset_top = 18.0
+offset_right = 265.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_22lvy")
+
+[node name="Window" type="Window" parent="." unique_id=1785524346]
+oversampling_override = 1.0
+title = "Create New Event"
+initial_position = 2
+size = Vector2i(640, 480)
+unresizable = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window" unique_id=1757081639]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/VBoxContainer" unique_id=2013869124]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer" unique_id=1510403630]
+layout_mode = 2
+text = "Event Name:"
+
+[node name="NameEdit" type="TextEdit" parent="Window/VBoxContainer/HBoxContainer" unique_id=27761640]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+context_menu_enabled = false
+
+[node name="Spacer" type="Control" parent="Window/VBoxContainer" unique_id=39260125]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Window/VBoxContainer" unique_id=1491974490]
+layout_mode = 2
+
+[node name="IdLabel" type="Label" parent="Window/VBoxContainer/HBoxContainer2" unique_id=859286046]
+layout_mode = 2
+text = "Event ID:"
+
+[node name="IdEdit" type="TextEdit" parent="Window/VBoxContainer/HBoxContainer2" unique_id=791710022]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+editable = false
+
+[node name="GenerateButton" type="Button" parent="Window/VBoxContainer/HBoxContainer2" unique_id=1616242056]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Generate"
+
+[node name="Spacer2" type="Control" parent="Window/VBoxContainer" unique_id=672981786]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Window/VBoxContainer" unique_id=604753267]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CreateButton" type="Button" parent="Window/VBoxContainer/HBoxContainer3" unique_id=318580998]
+layout_mode = 2
+text = "Create"
+
+[node name="CancelButton" type="Button" parent="Window/VBoxContainer/HBoxContainer3" unique_id=666993188]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
+[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer2/GenerateButton" to="." method="_on_generate_button_pressed"]
+[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer3/CreateButton" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer3/CancelButton" to="." method="_on_cancel_button_pressed"]

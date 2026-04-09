@@ -5,6 +5,7 @@ var create_condition_node_scene = load("res://addons/node_based_dialogue_system/
 var create_dialogue_node_scene = load("res://addons/node_based_dialogue_system/SceneView/create_new_dialogue_screen.tscn")
 var create_hub_node_scene = load("res://addons/node_based_dialogue_system/SceneView/create_new_hub_screen.tscn")
 var create_jump_node_scene = load("res://addons/node_based_dialogue_system/SceneView/create_new_jump_screen.tscn")
+var create_event_node_scene = load("res://addons/node_based_dialogue_system/SceneView/create_new_event_scene.tscn")
 var scene_edit = load("res://addons/node_based_dialogue_system/SceneMenu/scene_edit.tscn")
 
 @onready var graph_editor: GraphEdit = $VBoxContainer/GraphEdit
@@ -27,6 +28,10 @@ func _on_new_jump_node_button_pressed() -> void:
 
 func _on_new_condition_node_button_pressed() -> void:
 	var screen = create_condition_node_scene.instantiate()
+	add_child(screen)
+
+func _on_new_event_node_button_pressed() -> void:
+	var screen = create_event_node_scene.instantiate()
 	add_child(screen)
 
 func _on_graph_edit_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
@@ -70,10 +75,10 @@ func _on_graph_edit_connection_to_empty(from_node: StringName, from_port: int, r
 	SceneViewGlobal.add_drag_data(temp_drag_data)
 	context_menu.popup()
 
-
 func _on_popup_menu_id_pressed(id: int) -> void:
 	match (id):
 		0: _on_new_node_button_pressed()
 		1: _on_new_hub_node_button_pressed()
 		2: _on_new_jump_node_button_pressed()
 		3: _on_new_condition_node_button_pressed()
+		4: _on_new_event_node_button_pressed()
